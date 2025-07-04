@@ -34,7 +34,7 @@
       transition: 0.2s ease;
     ">⏱️ Chat Timer</button>
   </a>
-</div>
+</div>   
   <style>
     :root {
       --bg: #f9fafe;
@@ -273,6 +273,26 @@
     ]
   },
   {
+  category: "🎰 Welcome",
+  subcategory: "✅ ID Received – Verifying Details",
+  messages: [
+    "Sir, thank you for sharing your gaming ID. Please give me some time, I will check your details.",
+    "Thank you, Sir, for sharing your ID. Kindly allow me a few moments to verify your details.",
+    "Sir, I’ve received your gaming ID. Please wait a moment while I check your account.",
+    "Thank you, Sir. I’ll now check your ID details and update you shortly."
+  ]
+},
+{
+  category: "🎰 Welcome",
+  subcategory: "⚠️ Technical Delay Acknowledgement",
+  messages: [
+    "Hello Sir, we’re currently facing a technical issue. Sincere apologies for the inconvenience, and thank you for your patience.",
+    "Sir, due to some technical problems, things are taking longer than usual. Thank you for your kind understanding.",
+    "We apologize for the delay, Sir. There’s a temporary technical issue, and we truly appreciate your patience.",
+    "Sir, we are aware of the ongoing technical issue. Please bear with us — we are working to resolve it soon."
+  ]
+}, 
+{
     category: "🔚 Closing Scripts",
     subcategory: "🟢 Polite Soft Closings (Always Ask + Offer Help)",
     messages: [
@@ -427,6 +447,61 @@
       "This is a system rule, Sir. I’ll guide you if needed  just let me know."
     ]
   },
+  {
+  category: "💰 Deposit Issue",
+  subcategory: "🟡 Deposit Processing Time (1–2 hours wait explanation)",
+  messages: [
+    "Sir, sometimes deposits may take 1–2 hours to reflect. Kindly wait a little while.",
+    "It may take some time, Sir. Please allow up to 2 hours for the deposit to complete.",
+    "Sir, the deposit is still in process. Please wait — it should reflect shortly.",
+    "We appreciate your patience, Sir. Please wait a bit while it gets processed.",
+    "Sir, this is a normal delay. Kindly wait — it will be credited soon"
+  ]
+},
+{
+  category: "💰 Deposit Issue",
+  subcategory: "🔴 Information Request (With Screenshot, Short & Polite)",
+  messages: [
+    "Sir, please share the time, date, amount, and a screenshot of your payment.",
+    "Kindly send the payment screenshot along with the deposit details, Sir.",
+    "Sir, to verify this, I need the exact amount, date, time, and a clear screenshot of the transaction.",
+    "Please provide a screenshot of the payment you made, Sir — along with date and amount.",
+    "Sir, once you send the screenshot and deposit info, I’ll proceed with the request."
+  ]
+},
+{
+  category: "💰 Deposit Issue",
+  subcategory: "🟢 Request Forwarded (after getting info or delay over 2 hrs)",
+  messages: [
+    "Sir, I’ve shared your concern with the finance team. We’ll update you soon.",
+    "Your request has been forwarded to the concerned team, Sir. Kindly wait.",
+    "I’ve raised your request, Sir. The team will check and confirm.",
+    "Sir, your case is being checked now. We’ll inform you as soon as we hear back.",
+    "It’s been sent to the payment team, Sir. We’re following up."
+  ]
+},
+{
+  category: "💰 Deposit Issue",
+  subcategory: "🔁 Handling Repeated Questions: “Kab aayega, Sir?” etc.",
+  messages: [
+    "Sir, I completely understand. We’re waiting for confirmation from the payment side.",
+    "Please allow some time, Sir — the team is actively checking your deposit.",
+    "I know the wait is tough, Sir. But we’ll notify you as soon as there’s an update.",
+    "Sir, I’m following up with the team. We’ll get back to you once they confirm.",
+    "Kindly be patient, Sir. As soon as we receive a reply, I’ll let you know."
+  ]
+},
+{
+  category: "💰 Deposit Issue",
+  subcategory: "⚠️ Issue Clarification (Exact Problem Poochhne ke liye)",
+  messages: [
+    "Sir, could you please tell me exactly what issue you’re facing while depositing?",
+    "Kindly explain the exact issue, Sir, so I can assist better.",
+    "Sir, please let me know what is going wrong when you try to deposit.",
+    "To help you quickly, Sir, I need to know exactly what error is coming.",
+    "Sir, can you share what exactly is not working in the deposit process?"
+  ]
+},
   {
     category: "🎁 Voucher Request",
     subcategory: "🟢 1. Greeting & Eligibility Check",
@@ -652,9 +727,9 @@ Voucher Amount: ₹[amount]`
     category: "🛡️ Technical Issue",
     subcategory: "🔗 Website Link",
     messages: [
-      "Sir, here is the link to access our platform: https://luckymql.top",
-      "You can visit our website anytime through this link: https://luckymql.top",
-      "Here’s our site link for your convenience: https://luckymql.top — feel free to check your account or retry from there."
+      "Sir, here is the link to access our platform: https://lucky-star.com",
+      "You can visit our website anytime through this link: https://lucky-star.com",
+      "Here’s our site link for your convenience: https://lucky-star.com , feel free to check your account or retry from there."
     ]
   },
 
@@ -740,6 +815,18 @@ Voucher Amount: ₹[amount]`
       "🌟 Come join the fun and start winning today, Sir!"
     ]
   },
+  {
+  category: "🎮 Client Loss ",
+  subcategory: "🎰 Soft Guidance to Clients",
+  messages: [
+    "I understand your concern, Sir. Please remember, these games are luck-based, but smart play and patience often lead to better results. Start small and build slowly.",
+    "Sir, it’s true that luck plays a major role, but playing with discipline and setting limits can make your experience much better. Avoid high risks in one go.",
+    "Our platform is based on fair play and chance, Sir. Try to use smaller bets initially, observe the pattern, then proceed step by step.",
+    "Sir, it’s all about luck and timing — please don’t play under pressure. Try lighter games first and stay consistent with your plan.",
+    "I’ll also check if there’s any Free Spin or voucher available for you, Sir. Please wait a moment.",
+    "If there’s anything else I can do for you, Sir, feel free to let me know."
+  ]
+},
 
   // 😞 Handling Player Dissatisfaction
   {
@@ -799,78 +886,122 @@ Voucher Amount: ₹[amount]`
     ]
   },
   {
-    category: "🔖 Tag List",
-    subcategory: "💰 Deposit Related",
-    messages: [
-      "Deposit_issue_reported -- Issue raised. Asked client to wait 1–2 hrs and share screenshot/details.",
-      "Deposit_delay_info -- Informed client of standard 1–2 hour delay.",
-      "Deposit_forwarded_finance -- Deposit request forwarded to finance/payment team.",
-      "Deposit_offer_shared -- Informed client about active deposit bonus offer.",
-      "Deposit_screenshot_received -- Client provided deposit proof (screenshot + details)."
-    ]
-  },
+  category: "🔖 Tag List",
+  subcategory: "💰 Deposit Related",
+  messages: [
+    "Deposit Issue – Issue raised",
+    "Deposit Delay – Ask to wait up to 1–2 hours",
+    "Deposit Request Raised – Sent request to finance/payment team",
+    "Deposit Offer Shared – Informed client about active deposit bonus",
+    "Deposit Screenshot Taken – Client provided deposit proof"
+  ]
+},
+{
+  category: "🔖 Tag List",
+  subcategory: "💸 Withdrawal Related",
+  messages: [
+    "Withdrawal Issue – Issue raised",
+    "Statement Requested – Asked client to share bank PDF",
+    "Withdrawal Request Raised – Forwarded to financial team",
+    "Affiliate Withdrawal – Case under affiliate department",
+    "Standard Time Info Shared – 48-hour timeline informed"
+  ]
+},
+{
+  category: "🔖 Tag List",
+  subcategory: "🎁 Voucher Related",
+  messages: [
+    "Voucher Request – Request raised",
+    "Voucher Eligibility Check – Activity being verified",
+    "Voucher Provided – Bonus successfully credited",
+    "Voucher Not Eligible – Client not qualified",
+    "Voucher Pending – Awaiting processing",
+    "Voucher Amount Not Disclosed – Amount hidden from client",
+    "Voucher Not Eligible – Deposit ₹40,000 offer explained"
+  ]
+},
+{
+  category: "🔖 Tag List",
+  subcategory: "🧾 Client Verification",
+  messages: [
+    "Gaming ID Requested – Asked for gaming ID",
+    "Assigned to Another VIP Manager -- Client contacted me via .. WhatsApp",
+    "Security Referral – Contact security@lucky-star.games",
+    "Support Referral – Contact support@lucky-star.games"
+  ]
+},
+{
+  category: "🔖 Tag List",
+  subcategory: "📢 Client Concern / Communication",
+  messages: [
+    "Objection Handled – Doubt resolved",
+    "Clarification Requested – Asked client to explain issue",
+    "Delay Explained – Politely explained delay",
+    "Respect Reminder – Requested respectful tone",
+    "Policy Reminder – Mentioned clause 16.1"
+  ]
+},
+{
+  category: "🔖 Tag List",
+  subcategory: "🔚 Chat Status",
+  messages: [
+    "Resolved – Issue fully resolved",
+    "In Progress – Still under process",
+    "Escalated – Forwarded to higher team",
+    "Follow-Up Needed – Awaiting client or team update"
+  ]
+},
   {
-    category: "🔖 Tag List",
-    subcategory: "💸 Withdrawal Related",
-    messages: [
-      "Withdraw_issue_reported -- Withdrawal issue raised, 48-hour policy informed, bank PDF requested.",
-      "Withdraw_statement_requested -- Requested PDF bank statement from client.",
-      "Withdraw_request_forwarded -- Withdrawal request forwarded to financial team.",
-      "Withdraw_affiliate_case -- Informed withdrawal is via affiliate department.",
-      "Withdraw_standard_time_info -- Informed 48-hour standard withdrawal time."
-    ]
-  },
-  {
-    category: "🔖 Tag List",
-    subcategory: "🎁 Voucher Related",
-    messages: [
-      "Voucher_request_sent -- Voucher requested and forwarded to relevant team.",
-      "Voucher_check_start -- Checking voucher eligibility based on gameplay/losses.",
-      "Voucher_provided_confirmed -- Voucher successfully credited to user.",
-      "Voucher_not_eligible -- Client not eligible for voucher.",
-      "Voucher_pending -- Voucher requested and awaiting approval.",
-      "Voucher_no_amount_info -- Voucher amount not disclosed as per process.",
-      "Voucher_offer_40k -- Client informed about ₹40,000+ deposit offer for 9% voucher."
-    ]
-  },
-  {
-    category: "🔖 Tag List",
-    subcategory: "🧾 Client Verification",
-    messages: [
-      "Gaming_id_requested -- Asked client to share Gaming ID.",
-      "Vip_not_my_client -- Informed client they’re handled by another VIP Manager.",
-      "Security_mail_contact -- Redirected to security@lucky-star.games.",
-      "Support_mail_contact -- Redirected to support@lucky-star.games."
-    ]
-  },
-  {
-    category: "🔖 Tag List",
-    subcategory: "📢 Client Concern / Communication",
-    messages: [
-      "Objection_handled -- Client concern or doubt resolved.",
-      "Clarification_requested -- Asked client to explain their issue.",
-      "Delay_explained -- Delay explained politely.",
-      "Respect_reminder -- Gave polite reminder to client for respectful language.",
-      "Policy_clause_16_1 -- Clause 16.1 about abusive behavior mentioned."
-    ]
-  },
-  {
-    category: "🔖 Tag List",
-    subcategory: "🔚 Chat Status",
-    messages: [
-      "Chat_resolved -- Issue fully resolved in chat.",
-      "Chat_in_progress -- Issue still under process.",
-      "Chat_escalated -- Issue escalated to higher team.",
-      "Chat_follow_up_needed -- Waiting for client/team update."
-    ]
-  },
-  {
-    category: "🔖 Tag List",
-    subcategory: "🛠️ Technical",
-    messages: [
-      "Tech_clear_cache -- Suggested clearing browser cache and checking internet."
-    ]
-  }
+  category: "📋 Rakesh – Shift End Checklist",
+  subcategory: "🎁 1. Voucher Summary",
+  messages: [
+    "Total vouchers created & voucher amount: ________",
+    "Total vouchers provided: ________"
+  ]
+},
+{
+  category: "📋 Rakesh – Shift End Checklist",
+  subcategory: "💬 2. Fresh Chat Summary",
+  messages: [
+    "Hindi chats: ________",
+    "French chats: ________",
+    "Portuguese chats: ________",
+    "Total chats (add above): ________"
+  ]
+},
+{
+  category: "📋 Rakesh – Shift End Checklist",
+  subcategory: "🍴 3. Break Timing (Exact Format)",
+  messages: [
+    `Break: (00:00 AM – 00:00 AM IST)
+Break: (00:00 AM – 00:00 AM IST)
+Lunch: (00:00 AM – 00:00 AM IST)
+Break: (00:00 AM – 00:00 AM IST)`
+  ]
+},
+{
+  category: "📋 Rakesh – Shift End Checklist",
+  subcategory: "📊 4. Excel Sheet Updates",
+  messages: [
+    "✅ Total Chat Sheet",
+    "✅ Voucher Sheet (voucher amount)",
+    "✅ Break Timing Sheet"
+  ]
+},
+{
+  category: "📋 Rakesh – Shift End Checklist",
+  subcategory: "📸 5. Screenshots Upload",
+  messages: [
+    "Upload all chat and voucher screenshots to Telegram group before shift ends ✅"
+  ]
+},
+{
+  category: "📋 Rakesh – Shift End Checklist",
+  subcategory: "🧩 6. Unknown Issue Faced Today",
+  messages: [
+    "👉 Add this to your ‘Unknown Issues Sheet’"
+  ]
+}
 
 ];
 
