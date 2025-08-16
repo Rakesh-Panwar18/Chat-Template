@@ -3,37 +3,93 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Rakesh's Chat Toolbox</title>
-  <div style="text-align: center; margin: 30px 0;">
-  <a href="https://rakesh-panwar18.github.io/Chat-Voucher-Update/" target="_blank" style="text-decoration: none;">
-    <button style="
-      background: #eef4ff;
-      color: #2457ff;
-      border: none;
-      padding: 10px 18px;
-      font-size: 15px;
-      border-radius: 10px;
-      margin: 8px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.06);
-      cursor: pointer;
-      transition: 0.2s ease;
-    ">📊 Voucher Calculator</button>
+  <!-- 🚀 Tools Quick Access -->
+<div class="tools-container">
+  
+  <a href="https://rakesh-panwar18.github.io/Chat-Timer/" target="_blank">
+    <button class="tool-btn">⏱️ Chat Timer</button>
   </a>
+  <a href="https://rakesh-panwar18.github.io/Chat-Voucher/" target="_blank">
+    <button class="tool-btn">🧮 Voucher Count</button>
+  </a>
+  <!-- <a href="https://rakesh-panwar18.github.io/Shift-Closing/" target="_blank">
+    <button class="tool-btn">☕ Break Timer</button>
+  </a> -->
+</div>
 
-  <a href="https://rakesh-panwar18.github.io/Chat-tracker/" target="_blank" style="text-decoration: none;">
-    <button style="
-      background: #e9fff0;
-      color: #00a05d;
-      border: none;
-      padding: 10px 18px;
-      font-size: 15px;
-      border-radius: 10px;
-      margin: 8px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.06);
-      cursor: pointer;
-      transition: 0.2s ease;
-    ">⏱️ Chat Timer</button>
-  </a>
+<style>
+
+  .notes-card {
+  position: fixed;
+  top: 100px;
+  right: 20px;
+  width: 250px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 999;
+}
+
+.notes-card h3 {
+  margin: 0;
+  font-size: 18px;
+  color: #333;
+}
+
+.notes-card textarea {
+  width: 100%;
+  height: 150px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 8px;
+  resize: none;
+}
+
+.notes-card button {
+  background: #2563eb;
+  color: white;
+  border: none;
+  padding: 8px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.notes-card button:hover {
+  background: #1d4ed8;
+}
+
+  .tools-container {
+    text-align: center;
+    margin: 20px 0 30px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+  }
+
+  .tool-btn {
+    background: #f7f9ff;
+    color: #2457ff;
+    border: none;
+    padding: 10px 18px;
+    font-size: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.06);
+    cursor: pointer;
+    transition: 0.2s ease;
+    min-width: 160px;
+  }
+
+  .tool-btn:hover {
+    background: #e8f0ff;
+    transform: translateY(-2px);
+  }
+</style>
+
 </div>   
   <style>
     :root {
@@ -166,6 +222,8 @@
     .fav-row {
       background-color: #fff8e1;
     }
+
+    
   </style>
 </head>
 <body>
@@ -185,454 +243,556 @@
   <div id="messages"></div>
 
   <div class="card">
-    <div class="category">🆕 Unique Client Queries</div>
-    <div class="subcategory">Use this to note down new/unusual client concerns manually:</div>
-    <textarea id="queryInput" rows="2" style="width:100%;"></textarea>
-    <br><br>
-    <button id="addQueryBtn">➕ Submit Query</button>
+  <div class="category">🆕 Unique Client Queries</div>
+  <div class="subcategory">Note down new/unusual client concerns manually:</div>
+  
+  <textarea id="queryInput" rows="2" style="width:100%;"></textarea>
+  <br><br>
+  <button id="addQueryBtn" class="btn primary">➕ Add Query</button>
+  <button id="copyAllBtn" class="btn success">📋 Copy All</button>
 
-    <table id="queryTable">
-      <thead>
-        <tr>
-          <th>No.</th>
-          <th>Client Query</th>
-          <th>⭐</th>
-        </tr>
-      </thead>
-      <tbody></tbody>
-    </table>
-  </div>
+  <table id="queryTable">
+    <thead>
+      <tr>
+        <th>No.</th>
+        <th>Client Query</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+</div>
+
+<!-- ✅ Toast Notification -->
+<div id="toast"></div>
+
+<style>
+
+  #queryTable td {
+  vertical-align: middle;   /* text aur buttons middle me */
+}
+
+#queryTable td button {
+  margin-right: 4px;       /* button ke beech gap */
+  padding: 4px 10px;       /* thoda compact */
+  display: inline-flex;    /* icon-text align */
+  align-items: center;     /* vertical align center */
+  justify-content: center;
+}
+
+  .btn {
+    padding: 4px 10px;   /* छोटा किया */
+    border: none;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: 0.2s ease;
+  }
+  .btn.primary { background:#007bff; color:#fff; }
+  .btn.success { background:#28a745; color:#fff; }
+  .btn.warning { background:#4e8cff; color:#000; }
+  .btn.danger { background:#dc3545; color:#fff; }
+  .btn:hover { opacity:0.85; }
+
+  #queryTable td, #queryTable th {
+    padding: 6px;
+    text-align: left;
+  }
+
+  /* Toast */
+  #toast {
+    display:none;
+    position:fixed;
+    bottom:30px;
+    right:30px;
+    background:#28a745;
+    color:#fff;
+    padding:10px 16px;
+    border-radius:8px;
+    font-size:14px;
+    box-shadow:0 4px 12px rgba(0,0,0,0.15);
+    z-index:9999;
+    opacity:0;
+    transition:opacity 0.4s ease;
+  }
+</style>
+
+<script>
+  
+
+  // Toast Function
+  function showToast(message, color="#28a745") {
+    const toast = document.getElementById("toast");
+    toast.textContent = message;
+    toast.style.background = color;
+    toast.style.display = "block";
+    setTimeout(() => toast.style.opacity = "1", 50);
+
+    setTimeout(() => {
+      toast.style.opacity = "0";
+      setTimeout(() => toast.style.display = "none", 400);
+    }, 2000);
+  }
+
+  // Add Query
+  document.getElementById("addQueryBtn").addEventListener("click", () => {
+    const text = queryInput.value.trim();
+    if (!text) return;
+    queryCount++;
+    const row = document.createElement("tr");
+    row.innerHTML = `
+      <td>${queryCount}</td>
+      <td class="query-text">${text}</td>
+      <td>
+        <button class="btn warning" onclick="editQuery(this)">✏️ Edit</button>
+        <button class="btn danger" onclick="deleteQuery(this)">🗑️ Delete</button>
+      </td>
+    `;
+    queryTable.appendChild(row);
+    queryInput.value = "";
+  });
+
+  // Edit / Save Toggle
+  function editQuery(btn) {
+    const td = btn.closest("tr").querySelector(".query-text");
+
+    if (btn.textContent.includes("✏️")) {
+      // Edit Mode
+      const currentText = td.textContent;
+      td.innerHTML = `<input type="text" value="${currentText}" style="width:90%; padding:4px;">`;
+      btn.textContent = "💾 Save";
+      btn.className = "btn success";
+    } else {
+      // Save Mode
+      const input = td.querySelector("input");
+      const newText = input.value.trim();
+      if (newText) {
+        td.textContent = newText;
+        btn.textContent = "✏️ Edit";
+        btn.className = "btn warning";
+      } else {
+        showToast("⚠️ Query cannot be empty!", "#dc3545");
+      }
+    }
+  }
+
+  // Delete Query
+  function deleteQuery(btn) {
+    btn.closest("tr").remove();
+    showToast("🗑️ Query deleted", "#dc3545");
+  }
+
+  // Copy All Queries
+  document.getElementById("copyAllBtn").addEventListener("click", () => {
+    let allQueries = [];
+    document.querySelectorAll("#queryTable .query-text").forEach((td, i) => {
+      allQueries.push(`${i+1}. ${td.textContent}`);
+    });
+    if (allQueries.length === 0) {
+      showToast("⚠️ No queries to copy!", "#ffc107");
+      return;
+    }
+    navigator.clipboard.writeText(allQueries.join("\n")).then(() => {
+      showToast("✅ All queries copied!");
+    });
+  });
+</script>
+
 
   <script>
+
+    
     const responses = [
       
   {
-    category: "🎰 Welcome",
-    subcategory: "🟢 Start of Conversation – Greetings",
-    messages: [
-      "Hello Sir! How can I assist you today?",
-      "Hello Sir, Please let me know how I can help.",
-      "Hi Sir, thank you for reaching out. How may I assist you?",
-      "Welcome, Sir! I’m here to help. Please tell me your concern.",
-      "Good morning, Sir Let me know what help you need."
-    ]
-  },
-  {
-    category: "🎰 Welcome",
-    subcategory: "🧾 Gaming ID Confirmation",
-    messages: [
-      "Hello Sir, Could you kindly share your gaming ID for confirmation.",
-      "Hello Sir, can you please confirm your gaming ID for verification?",
-      "May I have your gaming ID, Sir, so I can assist you further?",
-      "Hello Sir,Kindly confirm your gaming ID, Sir, so I can check your account.",
-      "For your account security, Sir, please share your gaming ID."
-    ]
-  },
-  {
-    category: "🎰 Welcome",
-    subcategory: "🕐 Initial Hold Message",
-    messages: [
-      "Hello Sir, please give me a moment, I’m checking this for you.",
-      "Let me verify the details, Sir. One moment.",
-      "Hello Sir, I’m checking it right now, please wait a bit.",
-      "Kindly allow me a few seconds to check this, Sir.",
-      "Hello Sir,I’ll check and get back to you shortly."
-    ]
-  },
-  {
-    category: "🎰 Welcome",
-    subcategory: "🕝 Hold Reminder (after 2+ minutes)",
-    messages: [
-      "Still checking, Sir. I’ll update you shortly.",
-      "Almost done, Sir. Just a moment more.",
-      "Thank you for waiting, still verifying the details.",
-      "I’m finalizing it, Sir. Please allow me a bit more time.",
-      "I’m close to finishing the check, Sir. Please wait."
-    ]
-  },
-  {
-    category: "🎰 Welcome",
-    subcategory: "🔵 Update & Status Messages",
-    messages: [
-      "Hello Sir,, your request is in process. We’ll update you soon.",
-      " Hello Sir,The team is working on it. Please wait for the update.",
-      " Hello Sir,I’ve shared your request with the concerned team.",
-      "Hello Sir, It’s been escalated, Sir. We’re monitoring it closely.",
-      "Hello Sir, Forwarded to the manager, Sir. You’ll be contacted soon."
-    ]
-  },
-  {
-    category: "🎰 Welcome",
-    subcategory: "🔴 Clarification / When Info is Incomplete",
-    messages: [
-      "Hello Sir, can you please explain the issue in more detail?",
-      " Hello Sir, Kindly tell me exactly what happened, so I can help.",
-      "Hello Sir, May I know what error you are facing?",
-      "Hello Sir, Could you please provide a bit more info?",
-      " Hello Sir, To help you better, please tell me what issue occurred."
-    ]
-  },
-  {
   category: "🎰 Welcome",
-  subcategory: "✅ ID Received – Verifying Details",
+  subcategory: "🟢 Start of Conversation – Greetings",
   messages: [
-    "Sir, thank you for sharing your gaming ID. Please give me some time, I will check your details.",
-    "Thank you, Sir, for sharing your ID. Kindly allow me a few moments to verify your details.",
-    "Sir, I’ve received your gaming ID. Please wait a moment while I check your account.",
-    "Thank you, Sir. I’ll now check your ID details and update you shortly."
+    "Hello Sir, how may I assist you?",
+    "Hello Sir, please let me know your concern.",
+    "Hello Sir, please tell me how I can assist you.",
+    "Hello Sir, I’m here to help you. Please type your issue.",
+    "Good Morning Sir, how can I assist you?"
   ]
 },
 {
   category: "🎰 Welcome",
-  subcategory: "⚠️ Technical Delay Acknowledgement",
+  subcategory: "🎰 Initial Hold Messages",
   messages: [
-    "Hello Sir, we’re currently facing a technical issue. Sincere apologies for the inconvenience, and thank you for your patience.",
-    "Sir, due to some technical problems, things are taking longer than usual. Thank you for your kind understanding.",
-    "We apologize for the delay, Sir. There’s a temporary technical issue, and we truly appreciate your patience.",
-    "Sir, we are aware of the ongoing technical issue. Please bear with us — we are working to resolve it soon."
+    "Hello Sir, please give me a moment. I am checking this for you.",
+    "Hello Sir, I am checking your Gaming Id. Please wait for a moment.",
+    "Hello Sir, let me check the details. Please wait.",
+    "Hello Sir, I am checking your Gaming account. I will update you soon.",
+    "Hello Sir, I need a few minutes to check. Please stay online.",
+    "Hello Sir, okay. I will check and help you.",
+    "Good Morning Sir, okay let me check the details. Please wait.",
+    "Hello Sir, I am very sorry for the late reply. We were facing a small technical issue, that is why it took some time. I am checking your issue now. Please wait for a few minutes.",
+    "Good Morning Sir, sincere apologies for the delay. There was a technical issue, so the response got delayed. I am looking into your concern now. Please give me a few minutes."
+  ]
+},
+{
+  category: "🎰 Welcome",
+  subcategory: "⏳ Hold Reminder (After Delay)",
+  messages: [
+    "Sir, I am really sorry for the delay. I am still checking the issue. Please allow me a few more minutes.",
+    "Sir, sorry for the wait. We are facing a small technical issue. That is why it is taking more time. Please wait.",
+    "Sir, my sincere apologies. It is taking a little longer than expected. I am still checking everything for you.",
+    "Sir, thank you for your patience and sorry for the delay. I am verifying all details. Please stay connected.",
+    "Sir, I truly apologize. I need a little more time to complete the check. Kindly bear with me."
+  ]
+},
+{
+  category: "🎰 Welcome",
+  subcategory: "📝 Client Message Not Clear",
+  messages: [
+    "Hello Sir, sorry for the confusion. Can you please explain the issue clearly?",
+    "Hello Sir, I truly apologize, but I did not understand your message. Kindly explain your query in detail.",
+    "Hello Sir, sorry, can you please tell me exactly what issue you are facing?",
+    "Hello Sir, to assist you properly, I need more details. Please describe the issue again.",
+    "Hello Sir, I could not understand your query. Please write it again clearly."
+  ]
+},
+{
+  category: "🎰 Welcome",
+  subcategory: "🎰 Gaming ID Confirmation",
+  messages: [
+    "Hello Sir, could you kindly share your gaming ID for confirmation?",
+    "Hello Sir, can you please confirm your gaming ID for verification?",
+    "Hello Sir, may I have your gaming ID, so I can assist you further?",
+    "Good Morning Sir, kindly confirm your gaming ID, so I can check your account.",
+    "Hello Sir, for your account safety, please share your gaming ID."
+  ]
+},
+{
+  category: "🎰 Welcome",
+  subcategory: "🎮 Gaming ID / Client Details Received",
+  messages: [
+    "Sir, thank you for sharing your gaming ID. I will now check it. Please wait for a few minutes.",
+    "Thank you, Sir. I have received your gaming ID. Kindly allow me some time to verify the details.",
+    "Sir, thank you for providing the details. I will now check the information. Please wait.",
+    "Thank you, Sir, for sharing the required information. I am checking it now. Please allow me a few minutes.",
+    "Sir, I have received the details. I will check and get back to you. Thank you for your patience."
   ]
 }, 
 {
-    category: "🔚 Closing Scripts",
-    subcategory: "🟢 Polite Soft Closings (Always Ask + Offer Help)",
-    messages: [
-      "Okay Sir, if you need any help, I’m always available , just message me anytime.",
-      "I’ll be here if anything else comes up, Sir. Don’t hesitate to reach out.",
-      "Sir, if you ever need further assistance, just contact me directly , I’m happy to help.",
-      "Take care, Sir  feel free to message me anytime for support.",
-      "If you need help with anything else, I’m just a message away, Sir."
-    ]
-  },
-  {
-    category: "🔚 Closing Scripts",
-    subcategory: "🟡 Appreciation + Availability",
-    messages: [
-      "Thank you for your patience, Sir. I’m always here if you need further help.",
-      "Thanks for waiting, Sir  and if anything else comes up, just message me.",
-      "We appreciate your understanding, Sir. Let me know if you need anything more.",
-      "Sir, your support means a lot. Feel free to contact me anytime if needed.",
-      "Thanks again, Sir. I’ll be here for you if you need help again."
-    ]
-  },
-  {
-    category: "🔚 Closing Scripts",
-    subcategory: "🔵 Follow-Up Ongoing Requests (Still in Process)",
-    messages: [
-      "Sir, I’ll update you as soon as I get any response. Meanwhile, let me know if you need anything else.",
-      "Your request is being processed, Sir  and I’m always here for any further queries.",
-      "Please be assured, Sir, I’ll keep you posted. Feel free to ping me anytime if you need help.",
-      "I’ll notify you as soon as I receive an update, Sir. Meanwhile, I’m available for anything else.",
-      "I’m keeping track of this, Sir. Let me know if there’s anything else I can assist with."
-    ]
-  },
-  {
-    category: "🔚 Closing Scripts",
-    subcategory: "🔴 Escalated/Urgent Closings",
-    messages: [
-      "Sir, the team is working on it already. I’ll update you soon. If anything else comes up, I’m here.",
-      "I've escalated it, Sir. Please wait for their reply. Let me know if you have any other concerns.",
-      "Sir, I’ve pushed a follow-up to the department. I'm always here if you need more help.",
-      "Kindly be patient, Sir. I'll notify you with updates and I’m always available to assist you.",
-      "Your request is with the concerned team, Sir. In the meantime, I’m here for anything else."
-    ]
-  },
-  {
-    category: "🔚 Closing Scripts",
-    subcategory: "🙏 When Client Says “Thank You”",
-    messages: [
-      "You’re most welcome, Sir! If you need anything else, I’m always here.",
-      "Glad I could help, Sir  don’t hesitate to reach out anytime.",
-      "Happy to assist, Sir. Please feel free to message me again.",
-      "It was my pleasure, Sir. I'm always just a message away.",
-      "You're welcome, Sir! I'm here if you need support anytime."
-    ]
-  },
-  
-  {
-    category: "⏳ Delay in Issue Resolution",
-    subcategory: "🟡 Short Polite Delay (1–2 Hours or Same Day)",
-    messages: [
-      "Sir, I’m really sorry for the delay. Your request is already raised — we’re following up. Please feel free to message me anytime if you need anything else.",
-      "Apologies, Sir. We’re still waiting for a reply from the team. I’ll keep you posted. Meanwhile, I’m always available if you have more questions.",
-      "Thank you for your patience, Sir. Your case is being checked — I’ll update you soon. Do let me know if you need any other help.",
-      "Sir, the team is still working on it. Please allow some more time. If there’s anything else I can help with, feel free to ask.",
-      "Hello Sir! Sorry for the delay. The team is reviewing the case. I’ll update you shortly — I’m available here in case you need more help."
-    ]
-  },
-  {
-    category: "⏳ Delay in Issue Resolution",
-    subcategory: "🔵 Longer Delays (2–3 Days or More)",
-    messages: [
-      "Sir, I understand this has taken longer than expected, and I truly apologize. Your details have already been sent to the team, and we’re just waiting for an update. I’ll notify you immediately once I receive anything. Meanwhile, feel free to message me anytime.",
-      "Apologies for the long wait, Sir. We’re coordinating with the relevant department. These cases may take some extra time. Please know I’m here if you have any questions.",
-      "Sir, the request is in progress. The team is working closely with the payment provider. Thank you so much for your continued patience — and I’m always here if anything else comes up.",
-      "I completely understand your concern, Sir. The case has been escalated and we’re actively following up. I’ll make sure you’re updated as soon as we hear anything. Meanwhile, I’m always available if you have any other concerns.",
-      "Hello Sir, I truly appreciate your patience. Please be assured — your case is not ignored. It’s being tracked closely and I’ll get back to you as soon as I have something. Just message me anytime if you need anything else."
-    ]
-  },
-  {
-    category: "💸 Withdrawal Issues",
-    subcategory: "🔍 Ask for Details",
-    messages: [
-      "Hello Sir, sorry you’re facing an issue with the withdrawal. Can you please explain what exactly happened?",
-      "Sir, I’m here to help. Could you please tell me what issue you are seeing with your withdrawal?",
-      "May I know the exact error or problem you are facing while trying to withdraw, Sir?",
-      "Sir, kindly describe the issue so I can assist you better.",
-      "Please let me know what went wrong with your withdrawal, Sir. I’ll help you right away."
-    ]
-  },
-  {
-    category: "💸 Withdrawal Issues",
-    subcategory: "✅ Withdrawal Eligibility Confirmed",
-    messages: [
-      "Sir, your account is active for withdrawals. You may proceed without issue.",
-      "There’s no problem on your account, Sir. Kindly retry and let me know if any error appears.",
-      "The withdrawal service is fully active, Sir. Let me know if you face anything specific.",
-      "Everything seems fine on our side, Sir. Please try again and keep me posted.",
-      "Sir, withdrawal system is working normally for your account."
-    ]
-  },
-  {
-    category: "💸 Withdrawal Issues",
-    subcategory: "⏳ Standard Withdrawal Time (Up to 48 hours)",
-    messages: [
-      "Sir, the standard withdrawal time is up to 48 hours. Funds may arrive anytime within this period.",
-      "I understand the urgency, Sir. Withdrawals usually process within 24–48 hours depending on the bank.",
-      "Please wait up to 48 hours, Sir. This is the standard timeframe across all providers.",
-      "Withdrawals can sometimes take a little longer, Sir. Kindly wait  it’s under safe processing.",
-      "Sir, your withdrawal is in process. If not received after 48 hours, I’ll escalate it immediately."
-    ]
-  },
-  {
-    category: "💸 Withdrawal Issues",
-    subcategory: "🧾 Bank Statement Request (PDF Only)",
-    messages: [
-      "Sir, please share a PDF of your bank statement from the withdrawal date till now.",
-      "Kindly provide a PDF statement from the transaction date  we need it for further verification.",
-      "Sir, to move ahead, we need your bank statement in PDF format from that date till today.",
-      "Please upload a copy of your bank statement (PDF), so I can escalate it properly.",
-      "This will help the finance team track your funds, Sir. Thank you in advance."
-    ]
-  },
-  {
-    category: "💸 Withdrawal Issues",
-    subcategory: "📤 Escalation to Finance / Team",
-    messages: [
-      "Sir, I’ve shared your concern with the financial team. We’ll notify you as soon as we get a response.",
-      "The request has been escalated, Sir. Please allow a little time.",
-      "We’re waiting for the payment provider’s update, Sir  it’s being tracked.",
-      "Sir, the team is reviewing your case. I’ll keep you posted.",
-      "Your issue is now under finance review, Sir. I’ll follow up regularly and update you."
-    ]
-  },
-  {
-    category: "💸 Withdrawal Issues",
-    subcategory: "🔁 Handling Frustrated Clients",
-    messages: [
-      "Sir, I understand your concern — we’re waiting for confirmation from the payment side.",
-      "I truly apologize for the delay, Sir. I’ll notify you as soon as there’s any update.",
-      "Some withdrawals take extra time depending on the bank  we’re monitoring it closely.",
-      "I’ve sent a follow-up again, Sir. Please bear with us  I’m here to help till it’s resolved.",
-      "Your patience is appreciated, Sir. Rest assured, I’m tracking this for you."
-    ]
-  },
-  {
-    category: "💸 Withdrawal Issues",
-    subcategory: "🛑 Use of Deposit Before Withdrawal (Policy Reminder)",
-    messages: [
-      "Sir, as per policy, your deposit must be used at least once before withdrawal is allowed.",
-      "Please play at least one round with the deposited funds before trying to withdraw, Sir.",
-      "Sir, the system requires deposit usage before approving withdrawal.",
-      "Kindly note — deposit needs to be used in a game once before withdrawal.",
-      "This is a system rule, Sir. I’ll guide you if needed  just let me know."
-    ]
-  },
-  {
-  category: "💰 Deposit Issue",
-  subcategory: "🟡 Deposit Processing Time (1–2 hours wait explanation)",
+  category: "🔚 Closing",
+  subcategory: "🟢 Soft Closing",
   messages: [
-    "Sir, sometimes deposits may take 1–2 hours to reflect. Kindly wait a little while.",
-    "It may take some time, Sir. Please allow up to 2 hours for the deposit to complete.",
-    "Sir, the deposit is still in process. Please wait — it should reflect shortly.",
-    "We appreciate your patience, Sir. Please wait a bit while it gets processed.",
-    "Sir, this is a normal delay. Kindly wait — it will be credited soon"
+    "Alright Sir, if you need any assistance, I am always here. You can message me anytime.",
+    "Okay Sir, if you need any assistance, I am always available. Just message me.",
+    "Thank you Sir. If you need anything else, I will be here to assist you.",
+    "Sir, I hope your query is clear now. If anything else is needed, I will give full assistance.",
+    "Alright, you are always welcome Sir. If you ever need assistance again, just message me."
+  ]
+},
+{
+  category: "🔚 Closing",
+  subcategory: "🕒 Client Will Wait – Closed with Thanks",
+  messages: [
+    "Thank you Sir for your patience. If you need any assistance again, feel free to contact me anytime.",
+    "Thank you Sir for your understanding. If any other issue comes up, I am always here to assist you.",
+    "Sir, I truly appreciate your patience. If you ever need support again, just message me.",
+    "Thank you Sir for waiting. If you need any help again, I will always assist you.",
+    "Sir, thank you for being patient. If there is anything else I can help with, you can contact me anytime."
+  ]
+},
+{
+  category: "🔚 Closing",
+  subcategory: "🙏 Client Happy – Sent Thank You and Closed Politely",
+  messages: [
+    "You are always welcome Sir 😊 If you need any assistance in future, just message me. I will support you.",
+    "Thank you Sir for your kind words 🙏 I am always here for your assistance. Feel free to contact anytime.",
+    "Glad to know you are satisfied Sir 👍 If anything else is needed, I will be happy to assist you.",
+    "I am happy I could help you Sir 🌟 If you ever face any issue again, just message me anytime.",
+    "It means a lot Sir 🙏 Thank you. If you need support again, I am always available. Just contact me."
+  ]
+}, 
+  {
+  category: "⏳ Delay in Issue Resolution",
+  subcategory: "🎫 Voucher Request Sent – Waiting for Approval",
+  messages: [
+    "Sir, I have already sent your voucher request to the concerned department. They will review and approve it. Once approved, I will inform you immediately. Kindly wait for some time.",
+    "Sir, your voucher request is already submitted. It will be reviewed by the department shortly. After approval, it will be credited to your account. Please give me some time.",
+    "Sir, I checked your status. Your request is already forwarded. The department will now review and approve. I will update you as soon as it is done. Kindly wait.",
+    "Sir, I truly apologize for the delay. Your request is under process. After the department checks and approves it, I will notify you. Please allow some time.",
+    "Sir, your voucher request has been sent. It is under review. As soon as it gets approved, I will inform you. Kindly wait, it will be processed soon."
+  ]
+},
+{
+  category: "⏳ Delay in Issue Resolution",
+  subcategory: "🎫 Voucher Approval Taking Time – Client Follow-up",
+  messages: [
+    "Sir, sorry for the delay in your voucher. I have already sent your request. The team is still working on it. \n Please allow some more time. Thank you for your cooperation.",
+    "Sir, I truly apologize for the delay in getting your voucher. Your request is already submitted. The department is still reviewing it. \n Kindly be patient. I appreciate your support.",
+    "Sir, apologies for the delay. Your voucher request is already forwarded. The team is still processing it. Because of the weekend, approvals are slower than usual. \n Please wait a bit more. Thank you for understanding.",
+    "Sir, sorry for the delay in your voucher process. I have submitted your request. The department is still handling it. Kindly give us some time. \nThanks for your cooperation.",
+    "Sir, I sincerely apologize for the delay. Your request was already sent to the team. They are working on it. \nPlease allow some more time. Thank you for staying patient.",
+    "Sir, sorry for the inconvenience. I already sent your voucher request. The team is checking it. \nPlease wait a little longer. Thank you for your kind support.",
+    "Sir, I regret the delay in voucher approval. Your request is with the department. They are still reviewing it. \nKindly allow some more time. Thank you for your patience.",
+    "Sir, apologies for the delay. The request is already in process. The team is reviewing it. \n Please give us a bit more time. Thank you for cooperating with us."
+  ]
+},
+{
+  category: "⏳ Delay in Issue Resolution",
+  subcategory: "🎫 Voucher Already Processed – Reflecting Delay",
+  messages: [
+    "Sir, I checked your voucher request. It has already been processed to your gaming ID. If it is not showing yet, please wait a little. It will reflect soon.",
+    "Sir, your voucher is already processed from our side. Sometimes it takes time to reflect. Kindly allow some more time.",
+    "Sir, I truly apologize. The voucher request has been processed. If it has not appeared yet, please wait, it will show soon.",
+    "Sir, I understand your concern. Your voucher was processed yesterday. If it is not visible yet, kindly wait, it will reflect shortly.",
+    "Sir, the voucher has already been processed to your gaming ID. Please give it a little time if it has not shown yet. It will reflect soon."
+  ]
+},
+{
+  category: "⏳ Delay in Issue Resolution",
+  subcategory: "💸 Withdrawal Delay – Before 48 Hours",
+  messages: [
+    "Sir, sorry for the delay. Sometimes withdrawal takes up to 24–48 hours to be processed. Kindly wait a little. It should arrive soon. \nIf it does not arrive within 48 hours, please inform me. I will assist you further.",
+    "Sir, I checked your details. Withdrawal can take up to 48 hours. Please allow some more time. It will be updated shortly. \nIf it does not reflect in 48 hours, kindly contact me again.",
+    "Sir, I truly apologize. Your withdrawal is in process. It may take up to 24–48 hours. Kindly wait for some time. \nIf not received within 48 hours, please message me. I will check immediately.",
+    "Sir, sometimes processing takes longer depending on the payment partner. Please wait up to 48 hours. \nIf it does not come by then, I will help you right away. Just inform me.",
+    "Sir, withdrawal requests are usually completed within 48 hours. Kindly be patient. It should be completed soon. \nIf it does not arrive by that time, I will take immediate action. Please let me know."
+  ]
+},
+{
+  category: "⏳ Delay in Issue Resolution",
+  subcategory: "💸 Withdrawal Delay – After 48 Hours",
+  messages: [
+    "Sorry for the delay, Sir. I have checked your withdrawal status. I already raised your request to the relevant department. They have sent your details to the payment provider for verification. As soon as we receive an update, I will inform you immediately. \nIf you want any other assistance, please let me know. I can assist you anytime.",
+    "Apologies, Sir. I checked your withdrawal issue. The request has already been raised to the relevant department. Your details have been shared with the payment provider for review. Once we get an update, I will notify you immediately. \nIf you need any further assistance, please inform me. I am always available.",
+    "Sir, I sincerely apologize for the delay. I checked your status. Your withdrawal request has already been sent to the relevant department. They have forwarded your details to the payment provider for verification. As soon as we get any update, I will inform you. \nIf you want any other assistance, please let me know. I can assist you anytime.",
+    "Sorry, Sir. Your withdrawal issue is already raised to the relevant department. They have shared your information with the payment provider. We are waiting for their update, and I will inform you immediately once it arrives. \nIf you need anything else, please message me. I am happy to assist you.",
+    "Apologies for the delay, Sir. Your withdrawal request was raised to the relevant department. Your details are already with the payment provider for verification. I will inform you as soon as the update comes. \nIf you want any other assistance, please let me know. I can assist you anytime."
+  ]
+},
+{
+  category: "⏳ Delay in Issue Resolution",
+  subcategory: "💰 Deposit Delay – Before 2 Hours",
+  messages: [
+    "Sorry for the delay, Sir. I checked your deposit. You did it some time ago. Sometimes it takes 1–2 hours to show in your gaming ID. \nIf it does not show after 2 hours, please tell me. I will check it again.",
+    "Sir, apologies. I saw your deposit was done a short while ago. Sometimes it takes 1–2 hours to reflect. Please wait. \nIf it still does not come, I will help you.",
+    "Sir, I checked. Your deposit was made some time ago. It may take up to 1–2 hours to appear in your gaming ID. \nIf it still does not show after that, let me know.",
+    "Sorry, Sir. Your deposit was done a short time ago. Sometimes it takes 1–2 hours to reflect. \nIf it is still not showing after 2 hours, I will raise it.",
+    "Apologies, Sir. I can see your deposit was made some time ago. It may take 1–2 hours to reflect in your gaming ID. Please wait and tell me if it still does not show after 2 hours."
+  ]
+},
+{
+  category: "⏳ Delay in Issue Resolution",
+  subcategory: "💰 Deposit Delay – After 2 Hours",
+  messages: [
+    "Sorry for the delay, Sir. I have already raised your deposit issue to the relevant department. They have sent your details to the payment provider. As soon as we get an update, I will inform you. \nIf you want any other assistance, please let me know. I can assist you anytime.",
+    "Apologies, Sir. I checked your details. I have already sent your issue to the relevant department. They have forwarded it to the payment provider for checking. I will update you once I receive a response. \nIf you need any other assistance, I am here for you anytime.",
+    "Sir, sorry for the delay. Your deposit issue has been raised. The relevant department has already sent your details to the payment provider. I will inform you as soon as I get an update. \nIf you want any further assistance, just let me know.",
+    "Apologies, Sir. I have checked everything. Your request is already with the relevant department, and they have shared it with the payment provider. Please allow some time. I will inform you once I get an update. \nIf you need anything else, please message me.",
+    "Sorry for the delay, Sir. I raised your deposit issue to the relevant department. They sent your information to the payment provider to verify. Once I receive an update, I will inform you. \nIf you need any other assistance, I am available."
+  ]
+},
+{
+  category: "⏳ Delay in Issue Resolution",
+  subcategory: "⚠️ For Angry / Frustrated / Threatening Clients",
+  messages: [
+    "Sir, I truly understand your frustration. I am here to support you, and I have already taken your issue seriously. Please allow me some time, I will make sure to get this resolved.",
+    "Apologies, Sir. I know you are upset, and I fully respect your concern. I am already checking your case and will keep you updated as soon as I get any response. Please stay connected.",
+    "Sir, I request you to please be patient. I understand your situation and I want to help you as fast as possible. Your case is already under process, I will update you shortly.",
+    "Sir, I am here to help, and I am giving full attention to your issue. Please stay assured — your concern is being taken seriously and I will get back to you with the update.",
+    "Apologies, Sir. I can understand how important this is for you. I have already raised this to the relevant department. Please allow a little time, I will keep following up for you."
+  ]
+},
+  {
+  category: "💸 Withdrawal Issue",
+  subcategory: "✅ Withdrawal not received – Ask for exact time/date/amount",
+  messages: [
+    "Sorry for the inconvenience, Sir. Please send me the exact time, date, and amount of your withdrawal so I can check your details.",
+    "Apologies, Sir. Kindly share your withdrawal details — exact date, time, and amount — so I can check it properly.",
+    "Sir, I will help you. Please tell me the exact time, date, and amount of your withdrawal. I will check it and update you.",
+    "Sorry for the delay, Sir. Can you please provide the full details of your withdrawal — date, time, and amount? I will check and assist you.",
+    "Apologies, Sir. To check your withdrawal status, I need the exact time, date, and amount. Kindly share it with me."
+  ]
+},
+{
+  category: "💸 Withdrawal Issue",
+  subcategory: "✅ Request raised to department – Ask for waiting",
+  messages: [
+    "Sorry for the delay, Sir. I have just raised your withdrawal request to the relevant department. They will now check your details. Once I receive any update, I will inform you immediately. \nIf you want any other assistance, please let me know. I am always available.",
+    "Apologies, Sir. I have now raised your issue to the relevant department. They are checking your withdrawal details. As soon as I get an update, I will share it with you. \nIf you need any other assistance, feel free to message me.",
+    "Sir, I just sent your withdrawal issue to the relevant department. They are verifying your details now. Once I get any reply, I will inform you right away.\n If you need any more assistance, I am here for you.",
+    "Sir, I have now raised your request. The relevant department is checking the details. As soon as I receive an update, I will inform you. \nIf you ever need further assistance, please let me know.",
+    "Apologies for the delay, Sir. I just raised your withdrawal request to the relevant department. They are now checking it. Once I receive an update, I will let you know. \nIf you want any other assistance, please feel free to contact me."
+  ]
+},
+{
+  category: "💸 Withdrawal Issue",
+  subcategory: "✅ Deposit not used – Not eligible for withdrawal",
+  messages: [
+    "Sir, as per our policy, your deposit must be used at least once in gameplay before you can place a withdrawal request. Kindly play first and then try again. \nIf you need any assistance, feel free to message me anytime.",
+    "Apologies, Sir. You need to use your deposit in a game before the withdrawal can be processed. This is part of our basic policy. \nLet me know if you want any assistance, I will support you.",
+    "Sir, please note that your deposit must be used one time in gameplay before you become eligible for withdrawal. Kindly complete one round and try again. \nIf anything else is needed, I am here to assist you.",
+    "Sir, your deposit needs to be used once in any game. Only then the system allows the withdrawal to proceed. Please try this and let me know. I will assist you again if you face any other issue.",
+    "Sir, withdrawal is allowed only after the deposit is used once in a game. This is required by policy. Kindly use your amount and then try again. \nIf you have any other query, I will assist you anytime."
+  ]
+},
+{
+  category: "💸 Withdrawal Issue",
+  subcategory: "✅ Bank Statement Request – From Withdrawal Date Till Now",
+  messages: [
+    "Sorry for the inconvenience, Sir. I checked your details. Please share your bank statement in PDF format from the date of your withdrawal till now, so I can forward it to the relevant department for checking.",
+    "Apologies, Sir. Kindly send your bank statement in PDF format from the date you placed the withdrawal till now. I will send it to the relevant department for verification.",
+    "Sir, I have checked your withdrawal request. Please provide your bank statement in PDF format from the date of withdrawal to now. I will get it verified by the relevant department.",
+    "Apologies for the delay, Sir. For proper checking, kindly share your bank statement in PDF format starting from the date you made the withdrawal till now. I will send it for verification.",
+    "Sir, I need your bank statement in PDF format from the withdrawal date till now to check the issue properly. I will forward it to the relevant department for verification."
+  ]
+},
+{
+  category: "💸 Withdrawal Issue",
+  subcategory: "✅ Withdrawal Issue Clarification",
+  messages: [
+    "Sorry for the inconvenience, Sir. Could you please tell me exactly what issue you’re facing while withdrawing?",
+    "Apologies, Sir. What problem are you getting during the withdrawal? Kindly explain.",
+    "Sorry, Sir. May I know what issue is stopping your withdrawal? Please let me know clearly.",
+    "Apologies, Sir. Please describe the exact issue you’re facing in the withdrawal process.",
+    "Sorry, Sir. Kindly tell me what is going wrong when you try to withdraw your amount."
+  ]
+},
+ {
+  category: "💰 Deposit Issue",
+  subcategory: "✅ Ask for screenshot with transaction details",
+  messages: [
+    "Sorry for the inconvenience, Sir. Can you please send me the screenshot of your payment? It should show the transaction details clearly, so I can check and verify.",
+    "Apologies, Sir. Please share the payment screenshot showing full transaction details, so I can check and verify.",
+    "Sir, to check your deposit issue, I request you to send the screenshot of your payment with visible transaction details, so I can check and verify.",
+    "Kindly share the screenshot of your payment, Sir. Please make sure it includes date, time, and transaction details, so I can check and verify.",
+    "Sir, please send the screenshot of your payment where the transaction details are clearly shown, so I can check and verify."
   ]
 },
 {
   category: "💰 Deposit Issue",
-  subcategory: "🔴 Information Request (With Screenshot, Short & Polite)",
+  subcategory: "✅ Escalated to relevant department",
   messages: [
-    "Sir, please share the time, date, amount, and a screenshot of your payment.",
-    "Kindly send the payment screenshot along with the deposit details, Sir.",
-    "Sir, to verify this, I need the exact amount, date, time, and a clear screenshot of the transaction.",
-    "Please provide a screenshot of the payment you made, Sir — along with date and amount.",
-    "Sir, once you send the screenshot and deposit info, I’ll proceed with the request."
+    "Apologies, Sir. I checked your deposit details. I have raised your issue to the relevant department. You will receive the resolution as soon as possible. \nIf you need any assistance, please let me know.",
+    "Sir, I have raised your deposit issue to the relevant team. They are checking it now. You will get the update soon. \nIf you need any assistance, please message me anytime.",
+    "Sorry for the delay, Sir. I have escalated your issue to the relevant department. You will get the resolution shortly. \nI am here to assist you if needed.",
+    "Sir, I have checked and raised your deposit issue. It’s under verification now. You will receive an update soon. \nPlease let me know if you need any more assistance.",
+    "Apologies, Sir. I have sent your issue to the relevant department. Once they check it, I will inform you. \nIf you have any other query, feel free to contact me."
   ]
 },
 {
   category: "💰 Deposit Issue",
-  subcategory: "🟢 Request Forwarded (after getting info or delay over 2 hrs)",
+  subcategory: "✅ Deposit Issue Clarification",
   messages: [
-    "Sir, I’ve shared your concern with the finance team. We’ll update you soon.",
-    "Your request has been forwarded to the concerned team, Sir. Kindly wait.",
-    "I’ve raised your request, Sir. The team will check and confirm.",
-    "Sir, your case is being checked now. We’ll inform you as soon as we hear back.",
-    "It’s been sent to the payment team, Sir. We’re following up."
+    "Sorry for the inconvenience, Sir. Could you please tell me exactly what issue you’re facing while depositing?",
+    "Apologies, Sir. Can you please explain what problem you are facing during the deposit?",
+    "Sorry, Sir. May I know exactly what is going wrong while you are trying to deposit?",
+    "Apologies for the delay, Sir. Kindly share the exact issue you are facing while making the deposit.",
+    "Sorry, Sir. Please let me know clearly what problem is coming when you try to deposit."
+  ]
+},
+  {
+  category: "🎫 Voucher Related",
+  subcategory: "✅ Initial Check",
+  messages: [
+    "Hello Sir, okay, I will check your gaming activity and engagement. If you are eligible for a voucher, I will process your request. Please give me some time.",
+    "Hello Sir, I will check your gaming activity. If you are eligible, I will raise your voucher request to the relevant department. Kindly wait for some time.",
+    "Hello Sir, okay, let me check your gaming engagement. If you qualify, I will send your voucher request for processing. Please give me a moment.",
+    "Hello Sir, I’m checking your account activity. If found eligible, I will forward your request to the department. Kindly wait.",
+    "Hello Sir, okay, I will now check your gameplay. If you are eligible, I will raise the voucher request for you. Please allow some time."
   ]
 },
 {
-  category: "💰 Deposit Issue",
-  subcategory: "🔁 Handling Repeated Questions: “Kab aayega, Sir?” etc.",
+  category: "🎫 Voucher Related",
+  subcategory: "✅ Client Eligible – Request Raised for Approval",
   messages: [
-    "Sir, I completely understand. We’re waiting for confirmation from the payment side.",
-    "Please allow some time, Sir — the team is actively checking your deposit.",
-    "I know the wait is tough, Sir. But we’ll notify you as soon as there’s an update.",
-    "Sir, I’m following up with the team. We’ll get back to you once they confirm.",
-    "Kindly be patient, Sir. As soon as we receive a reply, I’ll let you know."
+    " Sir, I checked your gaming ID and I am happy to inform you that you are eligible for a voucher. I have raised your request and sent it to the relevant department for approval. Once it gets approved, I will inform you immediately. \n \nIf you need any assistance, please message me anytime.",
+    " Sir, I checked your account activity and you are eligible. I have sent your voucher request to the department for approval. Once it is approved, I will update you. Please wait patiently, \n\n I am here if you need anything.",
+    " Sir, I am glad to inform you that you qualify for a voucher. I have already raised your request and shared it with the relevant team. I will inform you as soon as it gets approved. \n\nIf you have any other query, feel free to contact me.",
+    " Sir, I checked your account and found that you are eligible for a voucher. I have raised your request and sent it to the relevant department for approval. As soon as I get the update, I will inform you. \n\nIf you need any assistance, please feel free to message me.",
+    " Sir, your voucher request has been raised successfully and is now under approval process. Once it is approved, I will inform you immediately. Thank you for your patience and support. \n\nIf you have any other query, feel free to contact me."
   ]
 },
 {
-  category: "💰 Deposit Issue",
-  subcategory: "⚠️ Issue Clarification (Exact Problem Poochhne ke liye)",
+  category: "🎫 Voucher Related",
+  subcategory: "✅ Not Eligible – Free Spin + Deposit Offer",
   messages: [
-    "Sir, could you please tell me exactly what issue you’re facing while depositing?",
-    "Kindly explain the exact issue, Sir, so I can assist better.",
-    "Sir, please let me know what is going wrong when you try to deposit.",
-    "To help you quickly, Sir, I need to know exactly what error is coming.",
-    "Sir, can you share what exactly is not working in the deposit process?"
+    "Sorry Sir, I checked your account. At this time, you are not eligible for a voucher due to low gaming activity. But you can try free spins in our Free Money section. \n\nAlso, if you deposit ₹30,000 within 24 hours, you’ll become eligible for a 12% voucher. Let me know if you want assistance.",
+    " Sir, I am sorry to inform you that your account is not eligible for a voucher right now. However, you can explore the Free Money section for free spins. \n\nAnd if you deposit ₹30,000 in the next 24 hours, you will receive a 12% voucher. I am here if you need help.",
+    "Sorry Sir, based on your recent activity, you are not eligible for a voucher currently. You may check out our Free Money section for some spins. \n\nAlso, a deposit of ₹30,000 within 24 hours will make you eligible for a 12% voucher. Feel free to message me anytime.",
+    "SorrySir, I reviewed your gameplay. You are not eligible for a voucher right now. But you can try our Free Money section for free spins. \n\nAnd if you deposit ₹30,000 within 24 hours, you’ll qualify for a 12% voucher. I’m available if you have any questions.",
+    "Sorry Sir, at the moment your account does not meet the voucher eligibility. But you can enjoy free spins from our Free Money section. \n\nAlso, if you deposit ₹30,000 within 24 hours, you can receive a 12% voucher. Kindly let me know if you need any help.",
+    "Sorry Sir, I have checked your details. At the moment you are not eligible for the deposit offer voucher because the required deposit amount was not completed. Please check the Free Money section to use free spins and also see your deposit offer. \n\nIf you need any other assistance, please let me know. I am always here to support you.",
+    "Sorry Sir, I have checked your account details. You are not eligible for the deposit offer voucher because the required deposit was not completed. You may check the Free Money section to use free spins and also look at your deposit offer \n\nIf you need any other assistance, please let me know. I am always here to support you.",
+    "Sir, I have checked your details carefully. You are not eligible for the deposit offer voucher because the required deposit was not done. Please use free spins from the Free Money section and also check your deposit offer \n\nIf you need any other assistance, please let me know. I am always here to support you."
+
+    
   ]
 },
-  {
-    category: "🎁 Voucher Request",
-    subcategory: "🟢 1. Greeting & Eligibility Check",
-    messages: [
-      "Hello Sir! Let me check your account activity and see if a voucher is available for you.",
-      "Hi Sir, I’m checking your voucher eligibility based on your recent gaming activity. Please wait a moment.",
-      "Sir, I will now verify if any voucher is available for your account. Please allow me a short time.",
-      "Hello Sir, thanks for reaching out. Let me check if you're eligible for any voucher based on your losses.",
-      "Sir, I’m checking your voucher eligibility now. I’ll update you shortly.",
-      "Sir, I’ll get back to you shortly. Meanwhile, feel free to let me know if you need help with anything else."
-    ]
-  },
-  {
-    category: "🎁 Voucher Request",
-    subcategory: "🟡 2. If Eligible – Request Sent",
-    messages: [
-      "Sir, I’ve requested the voucher for you. You’ll receive it as soon as possible.",
-      "Your voucher request has been shared with the relevant team, Sir. We’ll notify you once it’s ready.",
-      "Sir, you’re eligible. I’ve forwarded your request. Please wait for the update.",
-      "The voucher request is now in process, Sir. Kindly wait, we’ll inform you once it’s applied.",
-      "I’ve sent your voucher request to the relevant team, Sir. It will be credited shortly.",
-      "I'll keep you updated. Meanwhile, let me know if you need anything else, Sir!"
-    ]
-  },
-  {
-    category: "🎁 Voucher Request",
-    subcategory: "🔁 3. Voucher – Already Requested",
-    messages: [
-      "Sir, your voucher request has already been submitted today. Please wait, it will be credited soon.",
-      "Sir, it’s already under review. Once approved, I’ll update you right away.",
-      "This voucher is being processed currently, Sir. Thank you for your patience.",
-      "Your request is under process, Sir. I’ll notify you as soon as it’s applied.",
-      "Sir, the voucher is on its way. Please allow some time.",
-      "Thank you for your patience, Sir. I’m here if you need further help."
-    ]
-  },
-  {
-    category: "🎁 Voucher Request",
-    subcategory: "⚫ 4. Voucher – Amount Not Disclosed",
-    messages: [
-      "Sorry Sir, I’m unable to share the voucher amount now. It will be credited directly.",
-      "The amount will be visible once it’s applied, Sir. Kindly wait.",
-      "Sir, the voucher amount is system-calculated and cannot be confirmed right now.",
-      "As per process, Sir, amount details are not shared before credit.",
-      "Please wait for the voucher to be added, Sir — you’ll see the amount inside your game ID.",
-      "Please let me know if there’s anything else you need, Sir. I’ll be happy to assist."
-    ]
-  },
-  {
-    category: "🎁 Voucher Request",
-    subcategory: "🔴 5. Voucher – Not Eligible (Suggest Free Spin)",
-    messages: [
-      "Sir, I’ve checked your activity. Currently, there is no voucher available. You may try the Free Spin option in the Free Money section.",
-      "Right now, no voucher is available, Sir. I suggest you visit the Free Money section and enjoy some Free Spins.",
-      "Sir, your gaming activity is low for voucher eligibility. Please play more to qualify. Meanwhile, try Free Spin in the Free Money section.",
-      "Unfortunately, Sir, you're not eligible at the moment. But you can explore Free Spin rewards in Free Money.",
-      "No voucher is available now, Sir. Please check the Free Spin feature in the Free Money section.",
-      "I’ll keep monitoring your eligibility. Let me know if you need help with anything else, Sir."
-    ]
-  },
-  {
-    category: "🎁 Voucher Request",
-    subcategory: "🟨 6. Offer Instead – ₹40,000+ Deposit for 9% Voucher",
-    messages: [
-      "Sir, if you deposit ₹40,000 or more within 24 hours, a 9% voucher is applicable.",
-      "Special offer: Deposit ₹40,000+ today and enjoy 9% cashback voucher!",
-      "Sir, this offer allows 9% bonus on deposits above ₹40,000 within 24 hours.",
-      "You can claim a 9% voucher, Sir — just deposit ₹40,000+ within 24 hours.",
-      "Make a ₹40,000 deposit within 24 hrs and get 9% voucher as per the current offer.",
-      "Let me know if you want to claim this offer, Sir. I’m just a message away!"
-    ]
-  },
-  {
-    category: "🎁 Voucher Request",
-    subcategory: "🟢 7. Voucher Provided – Congratulations",
-    messages: [
-      "🎉 Congratulations Sir! ₹[amount] voucher has been added to your account. Enjoy and good luck! 🍀",
-      "👏 Great news! Your ₹[amount] voucher is credited successfully. All the best! 🎰",
-      "✅ Sir, ₹[amount] bonus is active in your game ID. Have fun! 🕹️",
-      "🎁 Voucher Added! ₹[amount] credited to your account. Wishing you lucky spins! 🍀",
-      "🔥 Done, Sir! ₹[amount] bonus is live. Enjoy your play! 🎮💰",
-      "Let me know if you have any more queries, Sir. I'm here to help anytime."
-    ]
-  },
-  {
-    category: "🎁 Voucher Request",
-    subcategory: "🔁 8. Objection Handling – 'Why Not Me?'",
-    messages: [
-      "Sir, vouchers are system-based and depend on your gaming activity.",
-      "Voucher eligibility is auto-calculated based on losses, playtime, and recent history.",
-      "The system checks your in-game engagement before giving vouchers.",
-      "Sir, this process is fair and equal for all users — there’s no manual control.",
-      "Please continue your activity — the system will automatically reward based on your play.",
-      "Keep enjoying the games, Sir! I’ll inform you if you qualify next time."
-    ]
-  },
-  {
-    category: "🎁 Voucher Request",
-    subcategory: "⏳ 9. Voucher in Process – Waiting for Team Confirmation",
-    messages: [
-      "Sir, we’ve already requested the voucher. It’ll be applied soon — please wait.",
-      "Please wait, Sir. It will be credited once approved.",
-      "It’s under process. I’ll inform you as soon as it’s done.",
-      "The team is working on it, Sir. Thank you for your patience.",
-      "Processing takes time, Sir. You’ll receive it shortly.",
-      "I’m here if you have further queries, Sir. Just send a message anytime."
-    ]
-  },
-  {
-    category: "🎁 Voucher Request",
-    subcategory: "🎫 10. Voucher Template",
-    messages: [
-      `Type of Bonus: Manual  
-Reason for Providing: On Loss  
-BK Income Period: [dd-mm-2025] – [26-06-2025]  
-Last Voucher Activated: [dd-mm-2025]  
-Deposit: ₹[amount]  
-Withdrawal: ₹[amount]  
-BK Income: ₹[amount]  
-System Bonus: ₹[amount]
-Voucher Amount: ₹[amount]`
-    ]
-  },
+{
+  category: "🎫 Voucher Related",
+  subcategory: "✅ Client Asked Voucher Amount – Not Disclosed",
+  messages: [
+    " Sir, sorry but at this time I cannot confirm the voucher amount. Your request is already sent to the relevant department. As soon as it gets approved, I will inform you. \nIf you need any assistance, just message me anytime.",
+    "Sorry Sir, I understand your concern. Right now, I cannot tell the voucher amount. I have sent your request for approval. As soon as I get the update, I will let you know. \nPlease feel free to contact me if you need any support.",
+    "Sorry Sir, I have raised your voucher request. The amount will be confirmed after approval. Once I get the update from the relevant department, I will inform you. Please wait a bit. \nIf you ever need assistance again, I am always available.",
+    "Sorry Sir, I cannot confirm the voucher amount now. It is under review by the relevant department. Once it is approved, I will let you know quickly. \nThank you for your patience. You can message me anytime.",
+    "Sorry Sir, your request is in process. I am unable to confirm the voucher amount now. After approval from the department, I will share the update with you. \nIf you have any other query, I am here to assist you."
+  ]
+},
+{
+  category: "🎫 Voucher Related",
+  subcategory: "✅ Congratulations – Voucher Approved",
+  messages: [
+    "🎉 Congratulations Sir! ₹\u0020\u0020 voucher has been added to your account. Enjoy your games and good luck! 🍀 \n\n\If you need any assistance, just message me anytime.",
+    "🎉 Congratulations Sir! I’m happy to inform you that ₹\u0020\u0020 voucher has been successfully processed. Wish you a lucky time ahead! 🎰 \n\nIf you need anything else, I am always here to assist you.",
+    "🎉 Congratulations Sir! Your ₹\u0020\u0020 voucher is now active on your gaming ID. Enjoy playing and win big! 🔥 \n\nYou can message me anytime for further assistance.",
+    "🎉 Congratulations Sir! ₹\u0020\u0020 voucher has been applied to your account. Have a great time gaming! 🎮 \n\nIf you ever need support, I will assist you anytime.",
+    "🎉 Congratulations Sir! ₹\u0020\u0020 voucher has been credited to your ID. Best of luck for your next game! 🌟 \n\nIf you need any assistance, feel free to reach out."
+  ]
+},
+{
+  category: "🎫 Voucher Related",
+  subcategory: "✅ Not Eligible – Client Still Insisting",
+  messages: [
+    "Sorry Sir, voucher is based on your deposit, loss, and gameplay. Right now, your activity is low, so voucher is not possible. You can try free spins in the Free Money section to use free spins or check your deposit offer. If you need any help, just message me anytime.",
+    " Sorry Sir, I checked Gaming ID again. Your activity is less, so you are not eligible for a voucher. Please check the Free Money section to use free spins and your deposit offer. I will assist you anytime you need.",
+    "Sorry Sir, voucher is given only after good activity. Right now, it is not available on your account. You may try Free Money section to use free spins or use your deposit offer. Let me know if you need anything else.",
+    "Sorry Sir, I understand. But your current activity is not enough to get a voucher. You can go to the Free Money section  and try free spins, or check your deposit offer. I am always here to assist you.",
+    "Sorry Sir, total activity like deposit and gameplay is checked for the voucher. Right now, it’s less on your ID. You can still try Free Money section to use free spins  or use the deposit offer given to you. If you ever need help, just message me."
+  ]
+},
+{
+  category: "🎫 Voucher Related",
+  subcategory: "✅ Request Template – On Loss",
+  messages: [
+    `Type of Bonus: Manual
+Reason for Providing: On Loss
+BK Income Period: [dd-08-2025] – [16-08-2025]
+Last Voucher Activated: [dd-08-2025]
+Deposit:
+Withdrawal:
+BK Income:
+System Bonus:
+Voucher Amount:`
+  ]
+},
+{
+  category: "🎫 Voucher Related",
+  subcategory: "✅ Request Template – On Deposit",
+  messages: [
+    `Type of Bonus: Manual
+Reason for Providing: On deposit
+BK Income Period: [dd-08-2025 00:00:00] – [16-08-2025]
+Last Voucher Activated: [dd-08-2025]
+Deposit:
+System Bonus:
+Voucher Amount:`
+  ]
+},
 
  // 🎯 Missed Call
   {
     category: "🎯 Missed Call",
     subcategory: "🔵 Standard Missed Call Replies",
     messages: [
-      "Hello Sir, sorry for the missed call. Right now, we are working remotely, so we’re available to help you through chat. If you have any issues, please feel free to share them here. We’ll be happy to assist you.",
-      "Sir, I’m currently unable to speak over the call, but I’ll arrange a callback for you shortly. You will receive a call soon. Alternatively, feel free to let me know your concern here in chat.",
+      "Hello Sir, sorry for the missed call. Right now, we are working remotely, so we’re available to help you through chat. \n\nIf you have any issues, please feel free to share them here. We’ll be happy to assist you.",
+      "Sorry Sir, I’m currently unable to speak over the call, but I’ll arrange a callback for you shortly. You will receive a call soon. Alternatively, feel free to let me know your concern here in chat.",
       "Apologies for missing your call, Sir. We’re assisting customers via chat at the moment. Please share your concern here, and I’ll help you right away.",
       "Sorry for the inconvenience, Sir. I’m unable to take calls at the moment, but I’ll make sure someone calls you back soon. Meanwhile, kindly share your concern here so I can assist you directly."
     ]
@@ -643,11 +803,11 @@ Voucher Amount: ₹[amount]`
     category: "🔄 VIP Manager Transfer",
     subcategory: "🟥 Not Your Assigned VIP Manager",
     messages: [
-      "Sir, I am not your assigned VIP manager and I do not have access to your gaming ID. I’ve forwarded your details to the concerned manager. They will contact you shortly to assist further.",
-      "Sir, your account is not handled by me, so I don’t have access to your gaming ID. I’ve already shared your case with your VIP manager. Please wait — they’ll reach out to you soon.",
-      "I’m not your VIP manager, Sir, and cannot access your account. Your details have been forwarded to the right manager  you’ll be contacted shortly.",
-      "Sir, I’m unable to assist directly as I am not your VIP manager. I’ve informed your assigned manager  they’ll connect with you shortly.",
-      "As I’m not assigned to your gaming ID, Sir, I’ve shared your concern with your VIP manager. Please wait for their response — they’ll support you further."
+      "Sorry Sir, I am not your assigned VIP manager and I do not have access to your gaming ID. I’ve forwarded your details to the concerned manager. They will contact you shortly to assist further.",
+      "Sorry Sir, your account is not handled by me, so I don’t have access to your gaming ID. I’ve already shared your case with your VIP manager. Please wait — they’ll reach out to you soon.",
+      "Sorry I’m not your VIP manager, Sir, and cannot access your account. Your details have been forwarded to the right manager  you’ll be contacted shortly.",
+      "Sorry Sir, I’m unable to assist directly as I am not your VIP manager. I’ve informed your assigned manager  they’ll connect with you shortly.",
+      "Sorry As I’m not assigned to your gaming ID, Sir, I’ve shared your concern with your VIP manager. Please wait for their response  they’ll support you further."
     ]
   },
   {
@@ -665,11 +825,11 @@ Voucher Amount: ₹[amount]`
     category: "🔄 VIP Manager Transfer",
     subcategory: "🟧 Not a VIP Member – Refer to Support",
     messages: [
-      "Sir, I’ve checked your account and you’re currently not a VIP member. Please contact our support team at support@lucky-star.games  they’ll assist you further.",
+      "Sorry Sir, I’ve checked your account and you’re currently not a VIP member. Please contact our support team at support@lucky-star.games  they’ll assist you further.",
       "You’re not assigned to any VIP manager right now, Sir. Kindly reach out to support@lucky-star.games for help regarding your concern.",
-      "Sir, as of now, your account is not under VIP support. Please write to support@lucky-star.games — our team will guide you further.",
-      "I’m unable to assist, Sir, as you’re not under VIP management. Please email our support team at support@lucky-star.games for further help.",
-      "Sir, your account is not listed under VIP. I recommend contacting support@lucky-star.games — they will provide full assistance."
+      "Sorry Sir, as of now, your account is not under VIP support. Please write to support@lucky-star.games — our team will guide you further.",
+      "Sorry I’m unable to assist, Sir, as you’re not under VIP management. Please email our support team at support@lucky-star.games for further help.",
+      "Sorry Sir, your account is not listed under VIP. I recommend contacting support@lucky-star.games — they will provide full assistance."
     ]
   },
   {
@@ -738,10 +898,10 @@ Voucher Amount: ₹[amount]`
     category: "🚫 Security Team Contact",
     subcategory: "🛡️ Security Restricted Cases",
     messages: [
-      "Sir, I’m unable to access your gaming ID due to security restrictions. Please contact our Security Team at security@lucky-star.pro — they’ll assist you directly.",
-      "Sir, your account is currently under review by our Security Team. Kindly write to security@lucky-star.pro for further help.",
+      "Sorry Sir, I’m unable to access your gaming ID due to security restrictions. Please contact our Security Team at security@lucky-star.pro — they’ll assist you directly.",
+      "Sorry Sir, your account is currently under review by our Security Team. Kindly write to security@lucky-star.pro for further help.",
       "I understand your concern, Sir. However, your ID is under security verification, and I don’t have access. Please contact security@lucky-star.pro",
-      "Sir, this case is being handled by our Security Team. Kindly email them at security@lucky-star.pro  they will guide you further.",
+      "Sorry Sir, this case is being handled by our Security Team. Kindly email them at security@lucky-star.pro  they will guide you further.",
       "Apologies, Sir. I don’t have access to your ID due to internal security status. Please reach out to security@lucky-star.games for full assistance."
     ]
   },
@@ -867,9 +1027,9 @@ Voucher Amount: ₹[amount]`
     ]
   },
 
-  // 🎁 Voucher Confirmation
+  // 🎁 Voucher Confirmation LS
   {
-    category: "🎁 Voucher Confirmation",
+    category: "🎁 Voucher Confirmation LS",
     subcategory: "🟢 Voucher Generated",
     messages: [
       `Sir, I’m happy to inform you that I was able to generate a voucher for you.\n\n🔐 Voucher Code: xxxxxx\n💰 Amount: ₹500\n\n👉 To activate it:\n- Go to your Profile\n- Open the Bonus Code section\n- Paste this code\n- Click Activate\n\n⚠️ Please don’t share this code with anyone else.\n\n🎉 Enjoy your bonus and good luck, Sir!`
@@ -885,72 +1045,126 @@ Voucher Amount: ₹[amount]`
       "Kindly be patient — the OTP code will arrive on your registered email ID once the issue is fixed."
     ]
   },
+ 
+  
+{
+    category: "🔖 Tag List",
+    subcategory: "📂 Greeting & Opening",
+    messages: [
+      "Player greeted with “Hello”\n \u0020:\u0020 Replied with greeting & asked how may I assist.",
+      "Player concern not clear\n \u0020:\u0020 Asked to clarify concern.",
+      "Gaming ID requested\n \u0020:\u0020 Asked for Gaming ID."
+    ]
+  },
   {
-  category: "🔖 Tag List",
-  subcategory: "💰 Deposit Related",
-  messages: [
-    "Deposit Issue – Issue raised",
-    "Deposit Delay – Ask to wait up to 1–2 hours",
-    "Deposit Request Raised – Sent request to finance/payment team",
-    "Deposit Offer Shared – Informed client about active deposit bonus",
-    "Deposit Screenshot Taken – Client provided deposit proof"
-  ]
-},
-{
-  category: "🔖 Tag List",
-  subcategory: "💸 Withdrawal Related",
-  messages: [
-    "Withdrawal Issue – Issue raised",
-    "Statement Requested – Asked client to share bank PDF",
-    "Withdrawal Request Raised – Forwarded to financial team",
-    "Affiliate Withdrawal – Case under affiliate department",
-    "Standard Time Info Shared – 48-hour timeline informed"
-  ]
-},
-{
-  category: "🔖 Tag List",
-  subcategory: "🎁 Voucher Related",
-  messages: [
-    "Voucher Request – Request raised",
-    "Voucher Eligibility Check – Activity being verified",
-    "Voucher Provided – Bonus successfully credited",
-    "Voucher Not Eligible – Client not qualified",
-    "Voucher Pending – Awaiting processing",
-    "Voucher Amount Not Disclosed – Amount hidden from client",
-    "Voucher Not Eligible – Deposit ₹40,000 offer explained"
-  ]
-},
-{
-  category: "🔖 Tag List",
-  subcategory: "🧾 Client Verification",
-  messages: [
-    "Gaming ID Requested – Asked for gaming ID",
-    "Assigned to Another VIP Manager -- Client contacted me via .. WhatsApp",
-    "Security Referral – Contact security@lucky-star.games",
-    "Support Referral – Contact support@lucky-star.games"
-  ]
-},
-{
-  category: "🔖 Tag List",
-  subcategory: "📢 Client Concern / Communication",
-  messages: [
-    "Objection Handled – Doubt resolved",
-    "Clarification Requested – Asked client to explain issue",
-    "Delay Explained – Politely explained delay",
-    "Respect Reminder – Requested respectful tone",
-    "Policy Reminder – Mentioned clause 16.1"
-  ]
-},
-{
-  category: "🔖 Tag List",
-  subcategory: "🔚 Chat Status",
-  messages: [
-    "Resolved – Issue fully resolved",
-    "In Progress – Still under process",
-    "Escalated – Forwarded to higher team",
-    "Follow-Up Needed – Awaiting client or team update"
-  ]
-},
+    category: "🔖 Tag List",
+    subcategory: "📂 Closing",
+    messages: [
+      "Query resolved / closing\n \u0020:\u0020 Provided polite closing message."
+    ]
+  },
+  {
+    category: "🔖 Tag List",
+    subcategory: "📂 Withdrawal Issues",
+    messages: [
+      "Withdrawal issue\n \u0020:\u0020 Asked to wait 24–48 hours.",
+      "Withdrawal issue\n \u0020:\u0020 Asked for withdrawal details.",
+      "Withdrawal issue\n \u0020:\u0020 Request raised on Jira – shared link.",
+      "Withdrawal issue\n \u0020:\u0020 Asked to wait as per …",
+      "Withdrawal issue\n \u0020:\u0020 Assisted as per …",
+      "Withdrawal issue\n \u0020:\u0020 Asked to wait & try after some time.",
+      "Withdrawal issue\n \u0020:\u0020 Asked player to share bank statement in PDF from withdrawal date till now."
+    ]
+  },
+  {
+    category: "🔖 Tag List",
+    subcategory: "📂 Deposit Issues",
+    messages: [
+      "Deposit issue\n \u0020:\u0020 Asked to wait 1–2 hours.",
+      "Deposit issue\n \u0020:\u0020 Asked for deposit details.",
+      "Deposit issue\n \u0020:\u0020 Request raised on Jira – shared link.",
+      "Deposit issue\n \u0020:\u0020 Asked to wait as per …",
+      "Deposit issue\n \u0020:\u0020 Assisted as per …",
+      "Deposit issue\n \u0020:\u0020 Asked to wait & try after some time."
+    ]
+  },
+  {
+    category: "🔖 Tag List",
+    subcategory: "📂 Voucher & Offers",
+    messages: [
+      "Voucher issue\n \u0020:\u0020 Asked to wait as per …",
+      "Voucher provided\n \u0020:\u0020 Shared voucher as per …",
+      "Voucher not eligible\n \u0020:\u0020 Informed – deposit ₹30k or more within next 24 hrs for 12% bonus.",
+      "Voucher not eligible\n \u0020:\u0020 Suggested to use free spins & reminded of previous deposit offer.",
+      "Deposit offer given\n \u0020:\u0020 Informed – deposit ₹30k or more within next 24 hrs for 12% bonus."
+    ]
+  },
+  {
+    category: "🔖 Tag List",
+    subcategory: "📂 Call Requests",
+    messages: [
+      "Player wants assistance on call\n \u0020:\u0020 Asked to wait & share the issue in chat.",
+      "Player wants call back\n \u0020:\u0020 Asked to wait – manager will contact soon."
+    ]
+  },
+  {
+    category: "🔖 Tag List",
+    subcategory: "📂 Assistance Requests",
+    messages: [
+      "Player needs assistance\n \u0020:\u0020 Asked to contact relevant manager via TA/WA.",
+      "Player needs assistance\n \u0020:\u0020 Asked to contact support team (not a VIP member).",
+      "Player needs assistance\n \u0020:\u0020 Asked to contact support team."
+    ]
+  },
+  {
+    category: "🔖 Tag List",
+    subcategory: "📂 Technical Issues",
+    messages: [
+      "Player faces technical issue\n \u0020:\u0020 Asked to clear app/browser cache & try again.",
+      "Player faces technical issue\n \u0020:\u0020 Asked for screenshot of issue."
+    ]
+  },
+  {
+    category: "🔖 Tag List",
+    subcategory: "📂 Security / TWC Cases",
+    messages: [
+      "Gaming ID under TWC\n \u0020:\u0020 Asked to contact security team.",
+      "No response from security team\n \u0020:\u0020 Asked to wait – player under TWC review."
+    ]
+  },
+  {
+    category: "🔖 Tag List",
+    subcategory: "📂 Gameplay Concerns",
+    messages: [
+      "Player facing regular losses\n \u0020:\u0020 Apologised & provided motivational guidance (Luck + Strategy).",
+      "Player complaint about casino\n \u0020:\u0020 Apologised & gave trust assurance.",
+      "Player asks about Casino Bonus\n \u0020:\u0020 Provided casino bonus system explanation."
+    ]
+  },
+  {
+    category: "🔖 Tag List",
+    subcategory: "📂 OTP & Verification",
+    messages: [
+      "Player facing OTP issue\n \u0020:\u0020 Asked to wait & try again after some time."
+    ]
+  },
+  {
+    category: "🔖 Tag List",
+    subcategory: "📂 Affiliate Queries",
+    messages: [
+      "Player needs info about affiliate program\n \u0020:\u0020 Asked to contact affiliate team."
+    ]
+  },
+  {
+    category: "🔖 Tag List",
+    subcategory: "📂 Abusive Language Handling",
+    messages: [
+      "Player used abusive language\n \u0020:\u0020 Policy 16.1 reminder given.",
+      "Player used abusive language repeatedly\n \u0020:\u0020 Gave 3× Policy 16.1 reminders & muted for 8 hrs."
+    ]
+  }
+
+,
   {
   category: "📋 Rakesh – Shift End Checklist",
   subcategory: "🎁 1. Voucher Summary",
@@ -1168,6 +1382,458 @@ Break: (00:00 AM – 00:00 AM IST)`
     populateSubcategoryDropdown();
     renderMessages();
   </script>
+ 
+<!-- 🔔 Alarm Sound -->
+<audio id="alarmSound" loop>
+  <source src="loudest_alarm.mp3" type="audio/mpeg" />
+  Your browser does not support the audio element.
+</audio>
+
+<!-- 🔔 Alarm Box -->
+<div id="alarmBox" style="display:none; position:fixed; top:20px; left:50%; transform:translateX(-50%); background:#ffe5e5; padding:20px 30px; border:2px solid red; z-index:9999; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.2); text-align:center;">
+  <strong style="font-size:18px;">🔔 It's Time! (Every 30 minutes)</strong>
+  <br><br>
+  <button onclick="stopAlarm()" style="padding:10px 20px; background:red; color:white; border:none; border-radius:6px; font-size:16px; cursor:pointer;">Stop Alarm</button>
+</div>
+
+<!-- 🕒 IST Clock Display -->
+<div id="clockDisplay" style="position:fixed; bottom:20px; right:20px; background:#f0faff; padding:10px 15px; border:1px solid #007bff; border-radius:8px; font-size:16px; color:#007bff; box-shadow:0 2px 8px rgba(0,0,0,0.1); z-index:999;">
+  🕒 IST Time: <span id="realTime">00:00:00</span>
+</div>
+
+<!-- 🧪 Test Button -->
+<!-- 🧪 Test Alarm Floating Icon -->
+<button onclick="startAlarm()" id="testAlarmBtn">🔊</button>
+
+<style>
+  #testAlarmBtn {
+    position: fixed;
+    bottom: 70px;   /* timer ke upar aa jayega */
+    right: 20px;    /* timer ke bilkul bagal me */
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #007bff;
+    color: white;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+    transition: 0.2s ease;
+  }
+  #testAlarmBtn:hover {
+    background: #0056c7;
+    transform: scale(1.1);
+  }
+</style>
+
+<script>
+  const alarmBox = document.getElementById("alarmBox");
+  const alarmSound = document.getElementById("alarmSound");
+  const realTime = document.getElementById("realTime");
+  let lastAlarmMinute = -1;
+
+  function updateClockAndCheckAlarm() {
+    const now = new Date();
+    const utcOffset = now.getTimezoneOffset() * 60000;
+    const istTime = new Date(now.getTime() + utcOffset + (5.5 * 3600000));
+
+    const hours = String(istTime.getHours()).padStart(2, '0');
+    const minutes = String(istTime.getMinutes()).padStart(2, '0');
+    const seconds = String(istTime.getSeconds()).padStart(2, '0');
+    realTime.textContent = `${hours}:${minutes}:${seconds}`;
+
+    const currentMinute = istTime.getMinutes();
+    const currentSecond = istTime.getSeconds();
+
+    if ((currentMinute === 0 || currentMinute === 30) &&
+        currentSecond <= 2 &&
+        lastAlarmMinute !== currentMinute) {
+      startAlarm();
+      lastAlarmMinute = currentMinute;
+    }
+
+    if (currentMinute !== lastAlarmMinute && (currentMinute !== 0 && currentMinute !== 30)) {
+      lastAlarmMinute = -1;
+    }
+  }
+
+  function startAlarm() {
+    alarmBox.style.display = "block";
+    alarmSound.volume = 0.1;
+
+    // Try direct play without prompt
+    alarmSound.play().then(() => {
+      console.log("✅ Alarm playing.");
+    }).catch(err => {
+      console.warn("❌ Alarm blocked:", err);
+    });
+
+    let volume = 0.1;
+    const increaseVolume = setInterval(() => {
+      volume += 0.1;
+      if (volume >= 1) {
+        volume = 1;
+        clearInterval(increaseVolume);
+      }
+      alarmSound.volume = volume;
+    }, 3000); // slow increase
+  }
+
+  function stopAlarm() {
+    alarmSound.pause();
+    alarmSound.currentTime = 0;
+    alarmBox.style.display = "none";
+  }
+
+  setInterval(updateClockAndCheckAlarm, 1000);
+
+
+
+
+
+</script>
+
+<!-- 📒 Floating Notes Button -->
+<button id="notesBtn">📒</button>
+
+<!-- 📒 Notes Box -->
+<div id="notesBoxContainer" style="display:none;">
+  <div id="notesHeader">
+    <h3>📒 My Notes</h3>
+    <div>
+      <button id="highlightBtn">🖍️ Highlight</button>
+      <button id="minimizeBtn">➖</button>
+    </div>
+  </div>
+  <!-- Inline toast inside box -->
+  <div id="notesToast"></div>
+  <div id="notesBox" contenteditable="true"></div>
+</div>
+
+<style>
+  /* Floating Notes Button */
+  #notesBtn {
+    position: fixed;
+    bottom: 120px;
+    right: 20px;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background: #ff9800;
+    color: white;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+    transition: 0.2s ease;
+    z-index: 1000;
+  }
+  #notesBtn:hover {
+    background: #e68900;
+    transform: scale(1.1);
+  }
+
+  /* Notes Box */
+  #notesBoxContainer {
+    position: fixed;
+    top: 120px;
+    left: 100px;
+    width: 380px;
+    height: 320px;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.25);
+    resize: both;
+    overflow: hidden;
+    z-index: 2000;
+    display: flex;
+    flex-direction: column;
+    font-family: "Segoe UI", sans-serif;
+  }
+
+  #notesHeader {
+    background: linear-gradient(90deg, #ffb84d, #ff9800);
+    padding: 6px 10px;
+    cursor: move;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 12px 12px 0 0;
+    color: white;
+    font-size: 14px;
+  }
+
+  #notesHeader h3 {
+    margin: 0;
+    font-size: 15px;
+    font-weight: 600;
+  }
+
+  #notesHeader button {
+    border: none;
+    background: rgba(255,255,255,0.2);
+    color: white;
+    padding: 3px 8px;
+    margin-left: 5px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  #notesHeader button:hover {
+    background: rgba(255,255,255,0.4);
+  }
+
+  #notesBox {
+    flex: 1;
+    padding: 10px;
+    font-size: 15px;
+    outline: none;
+    overflow-y: auto;
+  }
+
+  /* Highlighted text */
+  mark {
+    background: #ffff88;
+    padding: 0 2px;
+    border-radius: 2px;
+  }
+
+  /* Inline Toast */
+  #notesToast {
+    display: none;
+    background: #ffefc1;
+    color: #7a5200;
+    font-size: 13px;
+    padding: 6px 10px;
+    border-radius: 6px;
+    margin: 6px 10px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    animation: fadeInOut 2s ease;
+  }
+
+  @keyframes fadeInOut {
+    0% { opacity: 0; transform: translateY(-5px); }
+    10% { opacity: 1; transform: translateY(0); }
+    90% { opacity: 1; }
+    100% { opacity: 0; transform: translateY(-5px); }
+  }
+</style>
+
+<script>
+  const notesBtn = document.getElementById("notesBtn");
+  const notesContainer = document.getElementById("notesBoxContainer");
+  const notesBox = document.getElementById("notesBox");
+  const minimizeBtn = document.getElementById("minimizeBtn");
+  const notesHeader = document.getElementById("notesHeader");
+  const highlightBtn = document.getElementById("highlightBtn");
+  const notesToast = document.getElementById("notesToast");
+
+  // Load saved notes (HTML content to preserve highlights)
+  notesBox.innerHTML = localStorage.getItem("myNotesHTML") || "";
+
+  // Auto-save on typing
+  notesBox.addEventListener("input", () => {
+    localStorage.setItem("myNotesHTML", notesBox.innerHTML);
+  });
+
+  // Show / Hide Notes Box
+  notesBtn.addEventListener("click", () => {
+    notesContainer.style.display = (notesContainer.style.display === "none") ? "flex" : "none";
+  });
+
+  // Minimize button
+  minimizeBtn.addEventListener("click", () => {
+    notesContainer.style.display = "none";
+  });
+
+  // Drag Function
+  let offsetX, offsetY, isDown = false;
+  notesHeader.addEventListener("mousedown", (e) => {
+    isDown = true;
+    offsetX = e.clientX - notesContainer.offsetLeft;
+    offsetY = e.clientY - notesContainer.offsetTop;
+  });
+  document.addEventListener("mouseup", () => isDown = false);
+  document.addEventListener("mousemove", (e) => {
+    if (isDown) {
+      notesContainer.style.left = (e.clientX - offsetX) + "px";
+      notesContainer.style.top = (e.clientY - offsetY) + "px";
+      notesContainer.style.right = "auto";
+    }
+  });
+
+  // Auto-resize content area
+  const resizeObserver = new ResizeObserver(() => {
+    notesBox.style.height = (notesContainer.clientHeight - notesHeader.clientHeight - notesToast.clientHeight - 5) + "px";
+  });
+  resizeObserver.observe(notesContainer);
+
+  // Show Toast
+  function showToast(msg) {
+    notesToast.textContent = msg;
+    notesToast.style.display = "block";
+    setTimeout(() => {
+      notesToast.style.display = "none";
+    }, 2000);
+  }
+
+  // Highlight selected text
+  highlightBtn.addEventListener("click", () => {
+    const selection = window.getSelection();
+    if (selection.rangeCount > 0 && !selection.isCollapsed) {
+      const range = selection.getRangeAt(0);
+      const span = document.createElement("mark");
+      range.surroundContents(span);
+      localStorage.setItem("myNotesHTML", notesBox.innerHTML);
+
+      highlightBtn.style.background = "#ffd54f";
+      setTimeout(() => highlightBtn.style.background = "rgba(255,255,255,0.2)", 600);
+    } else {
+      showToast("⚠️ Please select some text to highlight.");
+    }
+  });
+</script>
+<!-- 🕒 Floating Break Button -->
+<button id="breakBtn">🕒</button>
+
+<!-- 🕒 Break Timing Box -->
+<div id="breakBoxContainer" style="display:none;">
+  <div id="breakHeader">
+    <h3>🕒 Break Timings (IST → MSK)</h3>
+    <button id="breakMinimize">➖</button>
+  </div>
+
+  <div id="breakBox">
+    <label>Break 1:</label>
+    <input type="time" id="b1s" step="60"> → <input type="time" id="b1e" step="60"><br><br>
+
+    <label>Break 2:</label>
+    <input type="time" id="b2s" step="60"> → <input type="time" id="b2e" step="60"><br><br>
+
+    <label>Lunch:</label>
+    <input type="time" id="ls" step="60"> → <input type="time" id="le" step="60"><br><br>
+
+    <button id="genBreak" class="btn">✅ Generate</button>
+    <button id="copyBreak" class="btn secondary">📋 Copy</button>
+
+    <div id="breakOutput" class="output" style="margin-top:10px; min-height:100px;">
+      Your converted MSK timings will appear here...
+    </div>
+  </div>
+</div>
+
+<style>
+  /* Floating Button */
+  #breakBtn{
+    position:fixed;
+    bottom:180px;
+    right:20px;
+    width:45px; height:45px;
+    border-radius:50%;
+    background:#0ea5e9; color:#fff;
+    border:none; font-size:20px;
+    cursor:pointer;
+    box-shadow:0 4px 10px rgba(0,0,0,.25);
+    transition:.2s ease;
+    z-index:1000;
+  }
+  #breakBtn:hover{ background:#0284c7; transform:scale(1.1); }
+
+  /* Break Box */
+  #breakBoxContainer{
+    position:fixed; top:150px; left:150px;
+    width:380px; height:auto;
+    background:#fff;
+    border-radius:12px;
+    box-shadow:0 6px 16px rgba(0,0,0,.25);
+    resize:both; overflow:hidden;
+    z-index:2000;
+    display:flex; flex-direction:column;
+    font-family:"Segoe UI",sans-serif;
+  }
+  #breakHeader{
+    background:linear-gradient(90deg,#38bdf8,#0ea5e9);
+    padding:6px 10px; cursor:move;
+    display:flex; justify-content:space-between;
+    align-items:center; border-radius:12px 12px 0 0;
+    color:white; font-size:14px;
+  }
+  #breakHeader h3{margin:0; font-size:15px; font-weight:600;}
+  #breakHeader button{
+    border:none; background:rgba(255,255,255,0.2); color:#fff;
+    padding:3px 8px; border-radius:6px; cursor:pointer;
+  }
+  #breakHeader button:hover{ background:rgba(255,255,255,0.4); }
+
+  #breakBox{ padding:12px; font-size:14px; overflow-y:auto; }
+  #breakBox label{ font-weight:600; font-size:13px; margin-right:6px; }
+
+  input[type=time]{ padding:6px 8px; border-radius:6px; border:1px solid #ddd; margin:4px 2px; }
+
+  .output{
+    border:1px dashed #d1d5db;
+    border-radius:8px; padding:8px;
+    background:#f9fafb; font-size:13px;
+    white-space:pre-wrap;
+  }
+  .btn{
+    padding:8px 12px; border:none; border-radius:8px;
+    margin:4px 2px; cursor:pointer; font-weight:600; font-size:14px;
+    color:#fff; background:linear-gradient(270deg,#22c55e,#16a34a,#22c55e);
+    background-size:300% 300%;
+    box-shadow:0 4px 10px rgba(34,197,94,.25);
+    animation:gradientMove 3s infinite;
+  }
+  .btn.secondary{ background:linear-gradient(270deg,#0ea5e9,#0284c7,#0ea5e9); }
+  @keyframes gradientMove{
+    0%{background-position:0% 50%;}
+    50%{background-position:100% 50%;}
+    100%{background-position:0% 50%;}
+  }
+</style>
+
+<script>
+  const breakBtn=document.getElementById("breakBtn");
+  const breakBox=document.getElementById("breakBoxContainer");
+  const breakMin=document.getElementById("breakMinimize");
+  const out=document.getElementById("breakOutput");
+
+  breakBtn.addEventListener("click",()=> breakBox.style.display=breakBox.style.display==="none"?"flex":"none");
+  breakMin.addEventListener("click",()=> breakBox.style.display="none");
+
+  // Drag move
+  let breakOffX, breakOffY, breakIsDown=false;
+  document.getElementById("breakHeader").addEventListener("mousedown",e=>{
+    breakIsDown=true; breakOffX=e.clientX-breakBox.offsetLeft; breakOffY=e.clientY-breakBox.offsetTop;
+  });
+  document.addEventListener("mouseup",()=>breakIsDown=false);
+  document.addEventListener("mousemove",e=>{
+    if(breakIsDown){ breakBox.style.left=(e.clientX-breakOffX)+"px"; breakBox.style.top=(e.clientY-breakOffY)+"px"; breakBox.style.right="auto"; }
+  });
+
+  // Convert function
+  const pad=n=>String(n).padStart(2,"0");
+  function timeToMinutes(t){if(!t) return null; const [h,m]=t.split(":").map(Number); return h*60+m;}
+  function minutesTo12h(min){min=((min%1440)+1440)%1440; let h24=Math.floor(min/60),m=min%60;
+    const ampm=h24>=12?"PM":"AM"; let h12=h24%12; if(h12===0)h12=12;
+    return `${pad(h12)}:${pad(m)} ${ampm}`;}
+  function istToMsk(t){const mins=timeToMinutes(t); if(mins===null) return "00:00 AM"; return minutesTo12h(mins-150);}
+  function line(label,s,e){return `${label}: (${istToMsk(s)} – ${istToMsk(e)} MSK)`;}
+
+  document.getElementById("genBreak").addEventListener("click",()=>{
+    const txt=[
+      line("Break 1",b1s.value,b1e.value),
+      line("Break 2",b2s.value,b2e.value),
+      line("Lunch",ls.value,le.value)
+    ].join("\n");
+    out.textContent=txt;
+  });
+  document.getElementById("copyBreak").addEventListener("click",()=> navigator.clipboard.writeText(out.textContent));
+</script>
+
+
+
 </body>
 </html>
 
