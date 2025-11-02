@@ -404,233 +404,330 @@
     
     const responses = [
       
-  {
+{
   category: "🎰 Welcome",
   subcategory: "🟢 Start of Conversation – Greetings",
   messages: [
-    "Hello Sir, how may I assist you?",
-    "Hello Sir, please let me know your concern.",
-    "Hello Sir, please tell me how I can assist you.",
-    "Hello Sir, I’m here to help you. Please type your issue.",
-    "Good Morning Sir, how can I assist you?"
+    "Hello Sir, I am here to assist you, please share your concern.",
+    "Hello Sir, please tell me your concern so I can assist you.",
+    "Hello Sir, I am here to help you, please share your concern.",
+    "Hello Madam, I am here to assist you, please tell me your concern.",
+    "Good Morning Sir, I am here to assist you, please share your concern."
   ]
 },
 {
   category: "🎰 Welcome",
   subcategory: "🎰 Initial Hold Messages",
   messages: [
-    
-
-
-    "Hello Sir, I am checking your Gaming Id. Please wait for a moment.",
-    "Hello Sir, sorry for the delay. Please give me some time, I will check your details.",
-    "Hello Sir, sorry for your loss. Let me check the voucher for you. Please give me some time, I will check your gaming ID.",
-    "Hello Sir, let me check the details. Please wait.",
-    "Hello Sir, I am checking your Gaming account. I will update you soon.",
-    "Hello Sir, I need a few minutes to check. Please stay online.",
-    "Hello Sir, okay. I will check and help you.",
-    "Good Morning Sir, okay let me check the details. Please wait.",
-    "Hello Sir, I am very sorry for the late reply. We were facing a small technical issue, that is why it took some time. I am checking your issue now. Please wait for a few minutes.",
-    "Good Morning Sir, sincere apologies for the delay. There was a technical issue, so the response got delayed. I am looking into your concern now. Please give me a few minutes."
+    "Hello Sir, I am checking your details, please give me a moment.",
+    "Hello Sir, please wait a moment, I am checking your gaming ID.",
+    "Hello Sir, I am checking your concern, please allow me some time.",
+    "Hello Sir, I will check and update you shortly, please wait.",
+    "Good Morning Sir, I am checking your details, please give me a moment.",
+    "Hello Madam, I am checking your details, please give me a moment.",
+    "Hello Madam, I will check and update you soon, please wait.",
+    "Hello Sir, I am checking your account now, please stay online.",
+    "Good Morning Sir, please allow me some time to check your concern.",
+    "Hello Sir, I am checking your issue, I will update you soon.",
+    "Sorry for your loss Sir, I am checking your gaming activity for the voucher request, please allow me some time."
   ]
 },
+
 {
   category: "🎰 Welcome",
-  subcategory: "⚙️ Still Checking / Please Wait",
+  subcategory: "⚙️ Still Checking / Please Wait (Progressive Replies)",
   messages: [
-    "Sir, I sincerely apologize for the delay.I’m still checking your account details carefully.Please allow me a few more minutes. ",
+    // First update (initial hold)
+    "Sorry Sir, I am checking your concern, please give me a moment.",
 
-    "Sir, sorry for the wait.\nWe’re facing a small technical issue, that’s why it’s taking longer.\nKindly stay connected for a few more minutes. ",
+    
 
-    "Sir, sorry for the delay. I’m still checking this for you. Please wait a moment.",
+    // Second update (slight delay)
+    "Apologies Sir, it’s taking a little longer, I am still checking your concern.",
 
-    "Thank you for your patience, Sir.\nI’m still reviewing your account to confirm the details.\nI’ll update you shortly. ",
+    // Third update (more time needed)
+    "Really sorry Sir, still checking your details carefully, it may take a few more minutes.",
 
-    "Sir, truly sorry for the delay.\nIt’s taking a bit longer than expected, but I’m on it.\nKindly bear with me for a few more minutes. "
+    // Fourth update (after long wait)
+    "Apologies Sir, it’s taking longer than usual due to system delay, but I am still checking your concern, please stay connected."
   ]
 },
-
 
 {
   category: "🎰 Welcome",
   subcategory: "📝 Client Message Not Clear",
   messages: [
-    "Hello Sir, sorry for the confusion. Can you please explain the issue clearly?",
-    "Hello Sir, I truly apologize, but I did not understand your message. Kindly explain your query in detail.",
-    "Hello Sir, sorry, can you please tell me exactly what issue you are facing?",
-    "Hello Sir, to assist you properly, I need more details. Please describe the issue again.",
-    "Hello Sir, I could not understand your query. Please write it again clearly."
+    "Sorry Sir, I could not understand your concern clearly. Please share it once again so I can check it properly for you.",
+    "Apologies Sir, I may not have understood your message correctly. Kindly explain your concern clearly so I can assist you better.",
+    "Sorry Sir, I did not get your point clearly. Please tell me your concern in short and clear words so I can check it for you.",
+    "Apologies Sir, I really want to understand your issue correctly. Please share the details once again with clarity so I can help you properly.",
+    "Sorry Sir, your message was not fully clear. Kindly explain it again in simple words so I can check it correctly for you."
   ]
 },
+
+//🎰 Gaming ID Confirmation 
 {
   category: "🎰 Welcome",
-  subcategory: "🎰 Gaming ID Confirmation",
+  subcategory: "🎰 Gaming ID Confirmation ",
   messages: [
-    "Hello Sir, could you kindly share your gaming ID for confirmation?",
-    "Hello Sir, can you please confirm your gaming ID for verification?",
-    "Hello Sir, may I have your gaming ID, so I can assist you further?",
-    "Good Morning Sir, kindly confirm your gaming ID, so I can check your account.",
-    "Hello Sir, for your account safety, please share your gaming ID."
+    "Hello Sir, for verification and security, could you please confirm your gaming ID once?",
+    "Hello Sir, kindly confirm your gaming ID so I can assist you safely and accurately.",
+    "Hello Sir, for account security and proper verification, please share your gaming ID.",
+    "Sir, could you please confirm which gaming ID you are referring to, so I can check it correctly?",
+    "Hello Sir, I see multiple gaming IDs, please confirm the one you want me to check for proper verification."
   ]
 },
+
+//🎰 Gaming ID / Client Details Received
 {
   category: "🎰 Welcome",
   subcategory: "🎮 Gaming ID / Client Details Received",
   messages: [
-    "Sir, thank you for sharing your gaming ID. I will now check it. Please wait for a few minutes.",
-    "Thank you, Sir. I have received your gaming ID. Kindly allow me some time to verify the details.",
-    "Sir, thank you for providing the details. I will now check the information. Please wait.",
-    "Thank you, Sir, for sharing the required information. I am checking it now. Please allow me a few minutes.",
-    "Sir, I have received the details. I will check and get back to you. Thank you for your patience."
+    "Sir, thank you for sharing your gaming ID. I will check it now, please allow me a few minutes.",
+    "Thank you Sir, I have received your gaming ID. Kindly wait while I verify the details.",
+    "Sir, thank you for providing the information. I am checking it now, please stay online for a moment.",
+    "Thank you Sir for sharing the required details. I will check and update you shortly.",
+    "Sir, I have received the details. I will verify them and get back to you. Thank you for your patience."
   ]
-}, 
+},
+
+//🔚 Closing
 {
   category: "🔚 Closing",
   subcategory: "🟢 Soft Closing",
   messages: [
-    "Alright Sir, if you need any assistance, I am always here. You can message me anytime.",
-    "Okay Sir, if you need any assistance, I am always available. Just message me.",
-    "Thank you Sir. If you need anything else, I will be here to assist you.",
-    "Sir, I hope your query is clear now. If anything else is needed, I will give full assistance.",
-    "Alright, you are always welcome Sir. If you ever need assistance again, just message me."
+    "Alright Sir, if you need any other assistance, please let me know. I am always here.",
+    "Okay Sir, if you need any assistance, just message me anytime. I will assist you.",
+    "Thank you Sir. If you need anything else, I am here to help.",
+    "Sir, I hope your query is clear now. If anything else comes up, I will assist you.",
+    "Alright Sir, you are always welcome. If you need assistance again, please message me."
   ]
 },
+
+//🔚 Closing
 {
   category: "🔚 Closing",
   subcategory: "🕒 Client Will Wait – Closed with Thanks",
   messages: [
-    "Thank you Sir for your patience. If you need any assistance again, feel free to contact me anytime.",
-    "Thank you Sir for your understanding. If any other issue comes up, I am always here to assist you.",
-    "Sir, I truly appreciate your patience. If you ever need support again, just message me.",
-    "Thank you Sir for waiting. If you need any help again, I will always assist you.",
-    "Sir, thank you for being patient. If there is anything else I can help with, you can contact me anytime."
+    "Thank you Sir for your patience. Your concern will be resolved as soon as possible. If you need any other assistance, please let me know. I am always here for you.",
+    "Thank you Sir for your understanding. Your concern will be addressed shortly. If anything else comes up, you can message me anytime, I will assist you.",
+    "Okay Sir, I truly appreciate your patience. Your concern will be resolved soon. If you need support again, just let me know, I am always available.",
+    "Thank you Sir for waiting. Your concern will be taken care of at the earliest. If you need help with anything else, I am here to assist you anytime.",
+    "Sir, thank you for being patient. Your concern will be resolved as soon as possible. If there is anything more I can help with, feel free to contact me anytime."
   ]
 },
+
+//🔚 Closing
 {
   category: "🔚 Closing",
   subcategory: "🙏 Client Happy – Sent Thank You and Closed Politely",
   messages: [
-    "You are always welcome Sir 😊 If you need any assistance in future, just message me. I will support you.",
-    "Thank you Sir for your kind words 🙏 I am always here for your assistance. Feel free to contact anytime.",
-    "Glad to know you are satisfied Sir 👍 If anything else is needed, I will be happy to assist you.",
-    "I am happy I could help you Sir 🌟 If you ever face any issue again, just message me anytime.",
-    "It means a lot Sir 🙏 Thank you. If you need support again, I am always available. Just contact me."
+    "You are always welcome Sir 😊 I am happy I could assist you. If you need any help in future, just message me anytime.",
+    "Thank you Sir for your kind words 🙏 It’s my pleasure to support you. Feel free to contact me anytime.",
+    "Glad to know you are satisfied Sir 👍 If anything else comes up, I will be happy to assist you.",
+    "I am happy I could help you Sir 🌟 If you face any issue again, just message me anytime. I am always here.",
+    "It means a lot Sir 🙏 Thank you. If you need any support again, please feel free to contact me anytime.",
+    "Thank you Sir 😊 I am glad I could make things easier for you. You can always reach me anytime for assistance.",
+    "Sir, it’s my pleasure to assist you 🙏 If you ever need help again, I am just a message away.",
+    "I am happy Sir 🌟 Thank you for your kind words. I am always here to support you anytime.",
+    "Thank you Sir 👍 I’m glad you are satisfied. For any future help, you can message me anytime.",
+    "Sir, your satisfaction means a lot 🙏 I am always available to assist you whenever needed."
   ]
-}, 
-  {
+},
+//⏳ Delay in Issue Resolution
+{
   category: "⏳ Delay in Issue Resolution",
   subcategory: "🎫 Voucher Request Sent – Waiting for Approval",
   messages: [
-    "Sir, I have already sent your voucher request to the concerned department. They will review and approve it. Once approved, I will inform you immediately. Kindly wait for some time.",
-    "Sir, your voucher request is already submitted. It will be reviewed by the department shortly. After approval, it will be credited to your account. Please give me some time.",
-    "Sir, I checked your status. Your request is already forwarded. The department will now review and approve. I will update you as soon as it is done. Kindly wait.",
-    "Sir, I truly apologize for the delay. Your request is under process. After the department checks and approves it, I will notify you. Please allow some time.",
-    "Sir, your voucher request has been sent. It is under review. As soon as it gets approved, I will inform you. Kindly wait, it will be processed soon."
+    "Sir, your voucher request has been sent to the team. Once it is approved, I will update you immediately. Please wait for a little while.",
+    "Sir, your voucher request is under review. As soon as it is approved, it will be credited and I will inform you. Kindly wait.",
+    "Sir, I checked your request. It is already sent to the department for approval. I will update you as soon as it is done. Please stay patient.",
+    "Sir, I apologize for the delay. Your request is being processed and will be approved soon. I will notify you once it’s done. Kindly wait.",
+    "Sir, your voucher request is with the department. Once approved, I will update you immediately. Thank you for your patience."
   ]
 },
+//⏳ Delay in Issue Resolution
 {
   category: "⏳ Delay in Issue Resolution",
   subcategory: "🎫 Voucher Approval Taking Time – Client Follow-up",
   messages: [
-    "Sir, sorry for the delay in your voucher. I have already sent your request. The team is still working on it. \n Please allow some more time. Thank you for your cooperation.",
-    "Sir, I truly apologize for the delay in getting your voucher. Your request is already submitted. The department is still reviewing it. \n Kindly be patient. I appreciate your support.",
-    "Sir, apologies for the delay. Your voucher request is already forwarded. The team is still processing it. Because of the weekend, approvals are slower than usual. \n Please wait a bit more. Thank you for understanding.",
-    "Sir, sorry for the delay in your voucher process. I have submitted your request. The department is still handling it. Kindly give us some time. \nThanks for your cooperation.",
-    "Sir, I sincerely apologize for the delay. Your request was already sent to the team. They are working on it. \nPlease allow some more time. Thank you for staying patient.",
-    "Sir, sorry for the inconvenience. I already sent your voucher request. The team is checking it. \nPlease wait a little longer. Thank you for your kind support.",
-    "Sir, I regret the delay in voucher approval. Your request is with the department. They are still reviewing it. \nKindly allow some more time. Thank you for your patience.",
-    "Sir, apologies for the delay. The request is already in process. The team is reviewing it. \n Please give us a bit more time. Thank you for cooperating with us."
+    // 1st follow-up
+    "Sir, sorry for the delay. Your voucher request is already sent to the team. Kindly wait a little, thank you for your patience.\nIf you need any other assistance, please let me know.",
+
+    // 2nd follow-up
+    "Sir, I apologize for the delay. Your request is still under review by the department. Please allow some more time, I appreciate your support.\nIf you need any other assistance, please let me know.",
+    "Sir, your voucher request is already sent to the team. There is a small technical issue causing a delay. Please wait a little, we are following up and you will receive it soon.\nIf you need any other assistance, please let me know.",
+
+    // 3rd follow-up
+    "Sir, apologies for the inconvenience. The team is still processing your voucher. Because of weekends and high request volume, approvals are taking longer. Kindly stay patient.\nIf you need any other assistance, please let me know.",
+
+    // 4th follow-up
+    "Sir, your request is in the final stage of approval. It will be credited to your gaming ID soon. Thank you for staying patient and understanding.\nIf you need any other assistance, please let me know.",
+
+    // Extra variations for repeated follow-ups
+    "Sir, sorry for the continued wait. Your voucher is still under department review. I will inform you immediately once it is approved. Please bear with us a little longer.\nIf you need any other assistance, please let me know.",
+    "Sir, I understand the delay is frustrating. Your request has been forwarded and is being processed. Kindly allow some more time, thank you for your cooperation.\nIf you need any other assistance, please let me know.",
+    "Sir, apologies again for the delay. The team is actively working on your request. It should be approved soon. Thank you for your patience.\nIf you need any other assistance, please let me know."
   ]
 },
+
+//⏳ Delay in Issue Resolution
 {
   category: "⏳ Delay in Issue Resolution",
-  subcategory: "🎫 Voucher Already Processed – Reflecting Delay",
+  subcategory: "🎫 Voucher Already Processed – Reflecting Delay (Progressive Replies)",
   messages: [
-    "Sir, I checked your voucher request. It has already been processed to your gaming ID. If it is not showing yet, please wait a little. It will reflect soon.",
-    "Sir, your voucher is already processed from our side. Sometimes it takes time to reflect. Kindly allow some more time.",
-    "Sir, I truly apologize. The voucher request has been processed. If it has not appeared yet, please wait, it will show soon.",
-    "Sir, I understand your concern. Your voucher was processed yesterday. If it is not visible yet, kindly wait, it will reflect shortly.",
-    "Sir, the voucher has already been processed to your gaming ID. Please give it a little time if it has not shown yet. It will reflect soon."
+    // Initial polite variations
+    "Sir, I checked your voucher request. It has already been processed to your gaming ID. Please wait a little, it will reflect soon.\nIf you need any other assistance, please let me know.",
+    "Sir, your voucher is already processed from our side. It may take a little time to reflect in your gaming ID. Kindly allow some time.\nIf you need any other assistance, please let me know.",
+    "Sir, the voucher request has been processed. If it has not appeared yet, please wait a few minutes, it will show shortly.\nIf you need any other assistance, please let me know.",
+
+    // Progressive / hierarchical replies for repeated follow-ups
+    "Sir, I understand your concern. Your voucher was processed. Sometimes it takes a little longer due to technical reasons. It will reflect soon.\nIf you need any other assistance, please let me know.",
+    "Sir, the voucher has already been added to your gaming ID. Our team is following up to ensure it reflects shortly. Kindly stay patient.\nIf you need any other assistance, please let me know.",
+    "Sir, the request is completed on our side. Due to a small technical delay, it may not be visible immediately. It will appear very soon.\nIf you need any other assistance, please let me know.",
+    "Sir, your voucher process is done. We are coordinating with the team to make it reflect in your gaming ID quickly. Thank you for your patience.\nIf you need any other assistance, please let me know.",
+    "Sir, the voucher has been fully processed and is awaiting final reflection. Please give a little time, it will be visible shortly in your gaming ID.\nIf you need any other assistance, please let me know."
   ]
 },
+
 {
   category: "⏳ Delay in Issue Resolution",
-  subcategory: "💸 Withdrawal Delay – Before 48 Hours",
+  subcategory: "💸 Withdrawal Delay – Before 48 Hours (Progressive Replies)",
   messages: [
-    "Sir, sorry for the delay. Sometimes withdrawal takes up to 24–48 hours to be processed. Kindly wait a little. It should arrive soon. \nIf it does not arrive within 48 hours, please inform me. I will assist you further.",
-    "Sir, I checked your details. Withdrawal can take up to 48 hours. Please allow some more time. It will be updated shortly. \nIf it does not reflect in 48 hours, kindly contact me again.",
-    "Sir, I truly apologize. Your withdrawal is in process. It may take up to 24–48 hours. Kindly wait for some time. \nIf not received within 48 hours, please message me. I will check immediately.",
-    "Sir, sometimes processing takes longer depending on the payment partner. Please wait up to 48 hours. \nIf it does not come by then, I will help you right away. Just inform me.",
-    "Sir, withdrawal requests are usually completed within 48 hours. Kindly be patient. It should be completed soon. \nIf it does not arrive by that time, I will take immediate action. Please let me know."
+    // 1st follow-up
+    "Sir, sorry for the delay. Your withdrawal is being processed. Sometimes it takes 24–48 hours. Please wait a little.\nIf it is not reflected within 48 hours, please inform me. \nIf you need any other assistance, please let me know.",
+
+    // 2nd follow-up
+    "Sir, I apologize for the delay. Your withdrawal is still in process. Technical issues with the payment partner may cause a slight delay, up to 48 hours. Kindly stay patient.\nIf it does not reflect within 48 hours, please let me know. \nIf you need any other assistance, please let me know.",
+
+    // 3rd follow-up
+    "Sir, sorry for the delay. We are checking your withdrawal. It can take up to 48 hours to reflect. Please allow some more time.\nIf it is not updated in 48 hours, kindly inform me. \nIf you need any other assistance, please let me know.",
+
+    // 4th follow-up
+    "Sir, I am still checking your withdrawal. Sometimes it takes a little longer, up to 48 hours. I appreciate your patience.\nIf it is not reflected within 48 hours, please notify me. \nIf you need any other assistance, please let me know.",
+
+    // 5th follow-up
+    "Sir, sorry for the delay. Your withdrawal is under process and should reflect within 48 hours. Please wait a little longer.\nIf it is not updated within 48 hours, I will assist you immediately. \nIf you need any other assistance, please let me know."
   ]
 },
+
 {
   category: "⏳ Delay in Issue Resolution",
   subcategory: "💸 Withdrawal Delay – After 48 Hours",
   messages: [
-    "Sorry for the delay, Sir. I checked your withdrawal again. The request is already with the payment provider for review. I will update you as soon as I get any information. If you need any other assistance, please let me know.",
-    "Apologies, Sir. Your withdrawal request is already raised. The payment provider is now checking your details. I will inform you as soon as we get the update. If you need any other assistance, please let me know.",
-    "Sorry Sir, I checked again. Your request has already gone to the payment provider for review. We are waiting for their reply. I will share the update with you once it comes. If you need any other assistance, please let me know.",
-    "Thank you for waiting, Sir. Your withdrawal request is already with the payment provider for checking. I will update you right away once I receive any information. If you need any other assistance, please let me know.",
-    "My apologies, Sir. Your withdrawal details are already with the payment provider for verification. We are waiting for their update. I will inform you as soon as it arrives. If you need any other assistance, please let me know."
+    // 1st follow-up
+    "Sir, sorry for the delay. Your withdrawal request is with the payment provider for verification. We are waiting for their response. I will update you as soon as we receive any information.\nIf you need any other assistance, please let me know.",
+    "Sir, thank you for your patience. As a valued VIP player, I am personally following up on your withdrawal request with the payment provider. We are constantly coordinating with them to ensure your amount is credited as soon as possible.\nI will keep you updated personally and notify you immediately once it is processed.\nIf you need any other assistance, please let me know.",
+    "Sir, I am really sorry for the delay. We are facing some technical issues, so it is taking a little longer. Please allow us some time. Your withdrawal will be credited to your gaming ID as soon as possible. We are working on it with full priority.\nIf you need any other assistance, please let me know.",
+
+    // 2nd follow-up
+    "Apologies, Sir. Your withdrawal request is still under review by the payment provider. We are closely following up to ensure it is processed soon. I will inform you immediately once I get an update.\nIf you need any other assistance, please let me know.",
+
+    // 3rd follow-up
+    "Sir, I checked again. The payment provider is verifying your withdrawal details. We are actively following up with them. As soon as they respond, I will notify you.\nIf you need any other assistance, please let me know.",
+
+    // 4th follow-up
+    "Thank you for waiting, Sir. Your withdrawal is still with the payment provider for checking. We are continuously coordinating with them to get it processed quickly. I will share any update immediately.\nIf you need any other assistance, please let me know.",
+
+    // 5th follow-up
+    "Sir, I sincerely apologize for the delay. Your request has been forwarded to the payment provider and is under verification. We are taking all steps to get your amount credited soon. I will inform you as soon as any update arrives.\nIf you need any other assistance, please let me know.",
+
+    // Extra progressive variations for repeated queries
+    "Sir, your withdrawal details are still with the payment provider. We are following up regularly. As soon as they verify, it will reflect in your account. I will keep you updated.\nIf you need any other assistance, please let me know.",
+    "Sir, I understand the delay is frustrating. We have escalated your request to the payment provider and are awaiting their confirmation. I will notify you immediately once the process completes.\nIf you need any other assistance, please let me know.",
+    "Sir, the payment provider is still verifying your withdrawal. We are actively monitoring this and coordinating with them. You will receive an update from me as soon as possible.\nIf you need any other assistance, please let me know."
   ]
 },
 {
   category: "⏳ Delay in Issue Resolution",
   subcategory: "💰 Deposit Delay – Before 2 Hours",
   messages: [
-    "Sorry for the delay, Sir. I checked your deposit. You did it some time ago. Sometimes it takes 1–2 hours to show in your gaming ID. \nIf it does not show after 2 hours, please tell me. I will check it again.",
-    "Sir, apologies. I saw your deposit was done a short while ago. Sometimes it takes 1–2 hours to reflect. Please wait. \nIf it still does not come, I will help you.",
-    "Sir, I checked. Your deposit was made some time ago. It may take up to 1–2 hours to appear in your gaming ID. \nIf it still does not show after that, let me know.",
-    "Sorry, Sir. Your deposit was done a short time ago. Sometimes it takes 1–2 hours to reflect. \nIf it is still not showing after 2 hours, I will raise it.",
-    "Apologies, Sir. I can see your deposit was made some time ago. It may take 1–2 hours to reflect in your gaming ID. Please wait and tell me if it still does not show after 2 hours."
+    // 1st variation – empathetic start
+    "Sir, I am really sorry for the delay. I can see your deposit was made recently. Sometimes it takes 1–2 hours to reflect in your gaming ID. \nIf it does not show after 2 hours, please inform me and I will personally check it for you.\nIf you need any other assistance, please let me know.",
+
+    // 2nd variation – polite reassurance
+    "Sir, apologies for the inconvenience. Your deposit was received a short while ago. Sometimes, it may take 1–2 hours to appear in your gaming ID. \nIf it still does not show after 2 hours, kindly inform me. I will make sure to follow up immediately.\nIf you need any other assistance, please let me know.",
+
+    // 3rd variation – empathetic + VIP tone
+    "Sir, I understand your concern and I am sorry for the wait. Your deposit was done recently and may take 1–2 hours to reflect in your account. \nIf it is still not visible after 2 hours, please message me. I will ensure it is tracked and processed for you personally.\nIf you need any other assistance, please let me know.",
+
+    // 4th variation – proactive empathy
+    "Sir, I sincerely apologize for the delay. I see your deposit has been made. Sometimes it takes 1–2 hours to reflect in the gaming ID due to processing. \nIf it does not show after 2 hours, please let me know, and I will raise it immediately with the concerned team.\nIf you need any other assistance, please let me know.",
+
+    // 5th variation – friendly + empathetic
+    "Sorry for the wait, Sir. I completely understand your concern. Your deposit was done some time ago and may take 1–2 hours to appear in your account. \nIf it is still not visible after 2 hours, please inform me. I will personally follow up to ensure it is processed as soon as possible.\nIf you need any other assistance, please let me know."
   ]
 },
 {
   category: "⏳ Delay in Issue Resolution",
   subcategory: "💰 Deposit Delay – After 2 Hours",
   messages: [
-   "Sorry Sir, I have already escalated your deposit issue to the team. They shared your details with the payment provider, and we are now waiting for their response. I will update you as soon as I hear back. If you need any other assistance, please let me know.",
-   "Apologies, Sir. I just checked your case once more. The department has already sent your details to the payment provider for review. I will inform you as soon as I get any reply. If you need any other assistance, please let me know.",
-   "Sorry, Sir. I checked your deposit request again to make sure everything is in process. Your details are with the payment provider now. I will update you right away once we get any information. If you need any other assistance, please let me know.",
-   "Apologies for the wait, Sir. I reviewed your deposit issue again. The team has forwarded your details to the payment provider, and we are now waiting for their verification. I will inform you once we have an update. If you need any other assistance, please let me know.",
-   "Sorry, Sir. I double-checked your deposit request just now. It is already escalated to the department and shared with the payment provider. I will let you know as soon as we get their response. If you need any other assistance, please let me know."
+    // 1st follow-up – empathetic confirmation
+    "Sorry Sir, I have already escalated your deposit issue to our team. They have shared your details with the payment provider, and we are waiting for their response. You will receive your deposit soon. \nIf you need any other assistance, please let me know.",
 
+    // 2nd follow-up – VIP tone + reassurance
+    "Apologies, Sir. I personally checked your case. The department has sent your details to the payment provider for review. We are tracking it closely and will update you as soon as we hear back. \nIf you need any other assistance, please let me know.",
+
+    // 3rd follow-up – VIP personalized emphasis
+    "Sir, you are one of our VIP customers and we highly respect your time. I am personally handling your deposit request. It has already been raised with our concerned department and shared with the payment provider for verification. We are doing our best to ensure your deposit reflects as soon as possible. I am really sorry for the delay. \nIf you need any other assistance, please let me know.",
+
+    // 4th follow-up – technical explanation + empathy (new addition)
+    "Sir, I am really sorry for the delay. Some technical issues are causing a slight delay, but we are doing our best to ensure your deposit is credited as soon as possible. We are constantly following up for you. \nIf you need any other assistance, please let me know.",
+
+    // 5th follow-up – empathetic + proactive
+    "Sorry Sir, I reviewed your deposit request again. Your details are already with the payment provider. We are constantly following up to ensure it reflects as soon as possible. \nIf you need any other assistance, please let me know.",
+
+    // 6th follow-up – personal touch
+    "Sir, I understand your concern and sincerely apologize for the delay. Your deposit has been escalated and shared with the payment provider. We are following up personally to ensure it reflects in your account at the earliest. \nIf you need any other assistance, please let me know."
   ]
 },
 {
   category: "⏳ Delay in Issue Resolution",
   subcategory: "⚠️ For Angry / Frustrated / Threatening Clients",
   messages: [
-    "Sir, I truly understand your frustration. I am here to support you, and I have already taken your issue seriously. Please allow me some time, I will make sure to get this resolved.",
-    "Apologies, Sir. I know you are upset, and I fully respect your concern. I am already checking your case and will keep you updated as soon as I get any response. Please stay connected.",
-    "Sir, I request you to please be patient. I understand your situation and I want to help you as fast as possible. Your case is already under process, I will update you shortly.",
-    "Sir, I am here to help, and I am giving full attention to your issue. Please stay assured — your concern is being taken seriously and I will get back to you with the update.",
-    "Apologies, Sir. I can understand how important this is for you. I have already raised this to the relevant department. Please allow a little time, I will keep following up for you."
+    // 1st reply – empathetic + reassurance
+    "Sir, I completely understand your frustration. I am personally handling your issue and giving it full attention. Please allow me a little time, I will ensure it gets resolved.\nIf you need any other assistance, please let me know.",
+
+    // 2nd reply – apologetic + active follow-up
+    "Apologies, Sir. I know this delay is upsetting. I have already escalated your case to the concerned team and will keep following up. Please stay patient, I will update you soon.\nIf you need any other assistance, please let me know.",
+
+    // 3rd reply – request for patience + reassurance
+    "Sir, your issue is actively being processed and I am personally following up. I will update you as soon as the solution is available.\nIf you need any other assistance, please let me know.",
+
+    // 4th reply – attentive + personal touch
+    "Sir, we are giving priority to your request. As soon as the issue is resolved, I will inform you immediately.\nIf you need any other assistance, please let me know.",
+
+    // 5th reply – acknowledgment + proactive follow-up
+    "Apologies, Sir. I understand your concern. I am constantly coordinating with the team to ensure you get the solution as soon as possible.\nIf you need any other assistance, please let me know."
   ]
 },
-  {
+  // 💸 Withdrawal Issue – Ask for exact withdrawal details
+{
   category: "💸 Withdrawal Issue",
   subcategory: "✅ Withdrawal not received – Ask for exact time/date/amount",
   messages: [
-    "Sorry for the inconvenience, Sir. Please send me the exact time, date, and amount of your withdrawal so I can check your details.",
-    "Apologies, Sir. Kindly share your withdrawal details — exact date, time, and amount — so I can check it properly.",
-    "Sir, I will help you. Please tell me the exact time, date, and amount of your withdrawal. I will check it and update you.",
-    "Sorry for the delay, Sir. Can you please provide the full details of your withdrawal — date, time, and amount? I will check and assist you.",
-    "Apologies, Sir. To check your withdrawal status, I need the exact time, date, and amount. Kindly share it with me."
+    "Sorry for the inconvenience, Sir. Please provide the exact time, date, and amount of your withdrawal so I can check your request with the concerned department and ensure a proper update.",
+    "Apologies, Sir. Kindly share the full details  exact date, time, and amount of your withdrawal  so I can trace it with the team and get you a resolution quickly.",
+    "Sir, I will assist you personally. Please send me the exact time, date, and amount of your withdrawal. I will check it immediately and follow up with the department.",
+    "Sorry for the delay, Sir. Can you provide the full withdrawal details  date, time, and amount  so I can forward it for verification and ensure you get a solution soon",
+    "Apologies, Sir. To trace your withdrawal accurately, I need the exact date, time, and amount. Kindly share the details and I will handle it with priority."
   ]
 },
+
+// 💸 Withdrawal Issue – Request traced with department
 {
   category: "💸 Withdrawal Issue",
   subcategory: "✅ Request raised to department – Ask for waiting",
   messages: [
-    "Sorry for the delay, Sir. I have just raised your withdrawal request to the relevant department. They will now check your details. Once I receive any update, I will inform you immediately. \nIf you want any other assistance, please let me know. I am always available.",
-    "Apologies, Sir. I have now raised your issue to the relevant department. They are checking your withdrawal details. As soon as I get an update, I will share it with you. \nIf you need any other assistance, feel free to message me.",
-    "Sir, I just sent your withdrawal issue to the relevant department. They are verifying your details now. Once I get any reply, I will inform you right away.\n If you need any more assistance, I am here for you.",
-    "Sir, I have now raised your request. The relevant department is checking the details. As soon as I receive an update, I will inform you. \nIf you ever need further assistance, please let me know.",
-    "Apologies for the delay, Sir. I just raised your withdrawal request to the relevant department. They are now checking it. Once I receive an update, I will let you know. \nIf you want any other assistance, please feel free to contact me."
+    "Sir, I have personally raised your withdrawal request to the concerned department. They are checking your details now. As soon as I get any update, I will inform you immediately.\nIf you need any other assistance, please let me know. I am always available.",
+    "Okay, Sir. Your withdrawal request is now with the relevant department for verification. I will follow up closely and update you once I receive any response.\nIf you need further assistance, feel free to contact me.",
+    "Sir, I have sent your withdrawal request to the department. They are verifying your details, and I am personally keeping track. I will inform you immediately once I have any update.\nIf you want any other assistance, I am here to help.",
+    "Sir, your request has been  raised with the relevant department. They are checking it now. I will provide you an update as soon as possible.\nFor any other assistance, please let me know.",
+    "Apologies for the wait, Sir. I just raised your withdrawal request to the department. I am closely following up, and will update you once I receive their response.\nIf you need any other assistance, please feel free to message me."
   ]
 },
+
+// Subcategory: ✅ Deposit not used – Not eligible for withdrawal
 {
   category: "💸 Withdrawal Issue",
   subcategory: "✅ Deposit not used – Not eligible for withdrawal",
@@ -664,11 +761,14 @@
     "Sorry, Sir. Kindly tell me what is going wrong when you try to withdraw your amount."
   ]
 },
+
+  // Comment: Used when a customer reports a deposit issue. Request screenshot with full transaction details (date, time, amount, reference) for verification.
+
  {
   category: "💰 Deposit Issue",
   subcategory: "✅ Ask for screenshot with transaction details",
   messages: [
-    "Sorry for the inconvenience, Sir. Can you please send me the screenshot of your payment? It should show the transaction details clearly, so I can check and verify.",
+    "Sorry for the inconvenience, Sir. Can you please send me the screenshot of your payment. It should show the transaction details clearly, so I can check and verify.",
     "Apologies, Sir. Please share the payment screenshot showing full transaction details, so I can check and verify.",
     "Sir, to check your deposit issue, I request you to send the screenshot of your payment with visible transaction details, so I can check and verify.",
     "Kindly share the screenshot of your payment, Sir. Please make sure it includes date, time, and transaction details, so I can check and verify.",
@@ -678,14 +778,16 @@
 {
   category: "💰 Deposit Issue",
   subcategory: "✅ Escalated to relevant department",
+  // Comment: Used when the customer has sent the deposit screenshot. Confirms that the issue is escalated to the relevant department and reassures the customer of prompt resolution.
   messages: [
-    "Apologies, Sir. I checked your deposit details. I have raised your issue to the relevant department. You will receive the resolution as soon as possible. \nIf you need any assistance, please let me know.",
-    "Sir, I have raised your deposit issue to the relevant team. They are checking it now. You will get the update soon. \nIf you need any assistance, please message me anytime.",
-    "Sorry for the delay, Sir. I have escalated your issue to the relevant department. You will get the resolution shortly. \nI am here to assist you if needed.",
-    "Sir, I have checked and raised your deposit issue. It’s under verification now. You will receive an update soon. \nPlease let me know if you need any more assistance.",
-    "Apologies, Sir. I have sent your issue to the relevant department. Once they check it, I will inform you. \nIf you have any other query, feel free to contact me."
+    "Sir, I have personally escalated your deposit issue to the relevant department. You will receive the resolution as soon as possible. \nIf you need any assistance, please let me know.",
+    "Apologies for the inconvenience, Sir. Your deposit details have been sent to the concerned team for verification. I am personally following up to ensure you get the update soon. \nPlease message me anytime if you need assistance.",
+    "Sir, I have raised your deposit concern with the relevant department and will keep a close follow-up until it's resolved. You should receive the resolution shortly. \nLet me know if you need any further support.",
+    " Sir,  I have  escalated your deposit issue for verification. I will make sure you get an update at the earliest. \nIf you require any help, I am here to assist you.",
+    "Apologies, Sir. Your deposit issue is now with the concerned department. I am personally tracking it to ensure you receive the resolution as quickly as possible. \nPlease feel free to reach out if you need any further assistance."
   ]
 },
+
 {
   category: "💰 Deposit Issue",
   subcategory: "✅ Deposit Issue Clarification",
@@ -711,33 +813,33 @@
 {
   category: "🎫 Voucher Related",
   subcategory: "✅ Client Eligible – Request Raised for Approval",
+  // Comment: Use this when a customer's voucher request is eligible and has been raised. Confirms automatic addition to gaming ID and reassures the customer.
   messages: [
-    " Sir, I checked your gaming ID and I am happy to inform you that you are eligible for a voucher. I have raised your request and sent it to the relevant department for approval. Once it gets approved, I will inform you immediately. \n \nIf you need any assistance, please message me anytime.",
-    " Sir, I checked your account activity and you are eligible. I have sent your voucher request to the department for approval. Once it is approved, I will update you. Please wait patiently, \n\n I am here if you need anything.",
-    " Sir, I am glad to inform you that you qualify for a voucher. I have already raised your request and shared it with the relevant team. I will inform you as soon as it gets approved. \n\nIf you have any other query, feel free to contact me.",
-    " Sir, I checked your account and found that you are eligible for a voucher. I have raised your request and sent it to the relevant department for approval. As soon as I get the update, I will inform you. \n\nIf you need any assistance, please feel free to message me.",
-    " Sir, your voucher request has been raised successfully and is now under approval process. Once it is approved, I will inform you immediately. Thank you for your patience and support. \n\nIf you have any other query, feel free to contact me."
+    "Sir, I have checked your gaming activity and I am happy to confirm that you are eligible for a voucher. Your request has been raised and sent to the relevant team for approval. Once approved, it will be automatically added to your gaming ID and I will personally inform you. \n\nIf you need any assistance, please message me anytime.",
+    "Sir, after reviewing your account, you qualify for a voucher. I have sent your request to the department for approval. Once it is approved, it will reflect automatically in your gaming ID and I will notify you immediately. Please wait patiently. \n\nI am here if you need any help.",
+    "Sir, your gaming activity confirms eligibility for a voucher. Your request is now with the relevant team. As soon as it is approved, it will be automatically credited to your gaming ID and I will inform you personally. \n\nIf you have any other queries, feel free to contact me.",
+    "Sir, I have verified your account and you are eligible for a voucher. Your request is under approval with the department. Once approved, it will automatically appear in your gaming ID and I will update you immediately. \n\nPlease let me know if you need any assistance.",
+    "Sir, your voucher request has been successfully raised and is under approval. It will be automatically added to your gaming ID once approved, and I will personally inform you. Thank you for your patience and support. \n\nIf you have any other queries, feel free to message me."
   ]
-},
+}
+,
 {
   category: "🎫 Voucher Related",
   subcategory: "✅ Not Eligible – Free Spin + Deposit Offer",
+  // Comment: Use this when a VIP customer is not eligible due to low gaming activity. Start with empathy, explain why they are not eligible, provide free spins, and give VIP deposit offer valid for next 24 hours.
   messages: [
-    "Sorry Sir, I checked your account. At this time, you are not eligible for a voucher due to low gaming activity. But you can try free spins in our Free Money section. \n\nAlso, if you deposit ₹30,000 within 24 hours, you’ll become eligible for a 10% voucher. Let me know if you want assistance.",
-    " Sir, I am sorry to inform you that your account is not eligible for a voucher right now. However, you can explore the Free Money section for free spins. \n\nAnd if you deposit ₹30,000 in the next 24 hours, you will receive a 10% voucher. I am here if you need help.",
-    "Sorry Sir, based on your recent activity, you are not eligible for a voucher currently. You may check out our Free Money section for some spins. \n\nAlso, a deposit of ₹30,000 within 24 hours will make you eligible for a 10% voucher. Feel free to message me anytime.",
-    "SorrySir, I reviewed your gameplay. You are not eligible for a voucher right now. But you can try our Free Money section for free spins. \n\nAnd if you deposit ₹30,000 within 24 hours, you’ll qualify for a 10% voucher. I’m available if you have any questions.",
-    "Sorry Sir, at the moment your account does not meet the voucher eligibility. But you can enjoy free spins from our Free Money section. \n\nAlso, if you deposit ₹30,000 within 24 hours, you can receive a 10% voucher. Kindly let me know if you need any help.",
-    "Sorry Sir, I have checked your details. At the moment you are not eligible for the deposit offer voucher because the required deposit amount was not completed. Please check the Free Money section to use free spins and also see your deposit offer. \n\nIf you need any other assistance, please let me know. I am always here to support you.",
-    "Sorry Sir, I have checked your account details. You are not eligible for the deposit offer voucher because the required deposit was not completed. You may check the Free Money section to use free spins and also look at your deposit offer \n\nIf you need any other assistance, please let me know. I am always here to support you.",
-    "Sir, I have checked your details carefully. You are not eligible for the deposit offer voucher because the required deposit was not done. Please use free spins from the Free Money section and also check your deposit offer \n\nIf you need any other assistance, please let me know. I am always here to support you."
-
-    
+    "Sorry Sir, I checked your account and at the moment you are not eligible for a voucher because your recent gaming activity is low.  You can enjoy free spins in the Free Money section. \n\nAs a VIP player, we have a special deposit offer for you: if you deposit ₹20,000 within the next 24 hours, you will become eligible for a 10% voucher. \n\nIf you need any other assistance, please let me know. I am always here to support you.",
+    "Apologies Sir,  Currently, your account is not eligible for a voucher due to insufficient recent gameplay. You can try Free spins in the Free Money section. \n\nBeing a valued VIP player, if you deposit ₹20,000 within the next 24 hours, you will qualify for a 10% voucher. \n\nIf you need any other assistance, please let me know. I am always here to support you.",
+    "Sorry Sir, after reviewing your account, you are not eligible for a voucher right now because your recent gaming activity does not meet the requirement.  You can try free spins in the Free Money section. \n\nAlso, as a VIP, depositing ₹20,000 within the next 24 hours will make you eligible for a 10% voucher. \n\nIf you need any other assistance, please let me know. I am always here to support you.",
+    "Apologies Sir, I checked your gameplay and your account is currently not eligible for a voucher due to low activity.  Free spins are available in the Free Money section. \n\nAs a VIP player, you have a special opportunity: deposit ₹20,000 within the next 24 hours to become eligible for a 10% voucher. \n\nIf you need any other assistance, please let me know. I am always here to support you.",
+    "Sorry Sir, after reviewing your account, your current gaming activity makes you ineligible for a voucher. . You can enjoy free spins from the Free Money section. \n\nWe have a VIP special for you: deposit ₹20,000 within the next 24 hours to receive a 10% voucher. \n\nIf you need any other assistance, please let me know. I am always here to support you."
   ]
-},
+}
+,
 {
   category: "🎫 Voucher Related",
   subcategory: "✅ Client Asked Voucher Amount – Not Disclosed",
+  // Comment: Use this when a client asks about the voucher amount before approval. Always show empathy, mention that the request is under review, and inform the client that they will be updated once approved.
   messages: [
     " Sir, sorry but at this time I cannot confirm the voucher amount. Your request is already sent to the relevant department. As soon as it gets approved, I will inform you. \nIf you need any assistance, just message me anytime.",
     "Sorry Sir, I understand your concern. Right now, I cannot tell the voucher amount. I have sent your request for approval. As soon as I get the update, I will let you know. \nPlease feel free to contact me if you need any support.",
@@ -745,29 +847,47 @@
     "Sorry Sir, I cannot confirm the voucher amount now. It is under review by the relevant department. Once it is approved, I will let you know quickly. \nThank you for your patience. You can message me anytime.",
     "Sorry Sir, your request is in process. I am unable to confirm the voucher amount now. After approval from the department, I will share the update with you. \nIf you have any other query, I am here to assist you."
   ]
-},
+}
+,
 {
   category: "🎫 Voucher Related",
   subcategory: "✅ Congratulations – Voucher Approved",
+  // Comment: Use this when a voucher is approved and processed. Inform the client that it will reflect in their gaming ID. Avoid saying 'sent' or 'added' directly.
   messages: [
-    "🎉 Congratulations Sir! ₹\u0020\u0020 voucher has been added to your account. Enjoy your games and good luck! 🍀 \n\n\If you need any assistance, just message me anytime.",
-    "🎉 Congratulations Sir! I’m happy to inform you that ₹\u0020\u0020 voucher has been successfully processed. Wish you a lucky time ahead! 🎰 \n\nIf you need anything else, I am always here to assist you.",
-    "🎉 Congratulations Sir! Your ₹\u0020\u0020 voucher is now active on your gaming ID. Enjoy playing and win big! 🔥 \n\nYou can message me anytime for further assistance.",
-    "🎉 Congratulations Sir! ₹\u0020\u0020 voucher has been applied to your account. Have a great time gaming! 🎮 \n\nIf you ever need support, I will assist you anytime.",
-    "🎉 Congratulations Sir! ₹\u0020\u0020 voucher has been credited to your ID. Best of luck for your next game! 🌟 \n\nIf you need any assistance, feel free to reach out."
+    "🎉 Congratulations Sir! Your ₹\u0020\u0020 voucher has been successfully processed . Enjoy your games and good luck! 🍀 \n\nIf you need any assistance, just message me anytime.",
+    "🎉 Congratulations Sir! I’m happy to inform you that your ₹\u0020\u0020 voucher has been processed. It will appear in your gaming ID soon. Wishing you a lucky time ahead! 🎰 \n\nI’m here if you need any support.",
+    "🎉 Congratulations Sir! Your ₹\u0020\u0020 voucher is now processed and will reflect in your gaming ID shortly. Enjoy playing and win big! 🔥 \n\nMessage me anytime if you need further assistance.",
+    "🎉 Congratulations Sir! The ₹\u0020\u0020 voucher has been processed and will soon appear in your account. Have a great time gaming! 🎮 \n\nIf you ever need support, I will assist you anytime.",
+    "🎉 Congratulations Sir! Your ₹\u0020\u0020 voucher has been processed and will reflect in your ID shortly. Best of luck for your next game! 🌟 \n\nFeel free to contact me for any assistance."
   ]
-},
+}
+,
 {
   category: "🎫 Voucher Related",
   subcategory: "✅ Not Eligible – Client Still Insisting",
+  // Comment: Use this when client insists on voucher but is currently not eligible. Explain free spins, previous deposit offer, and VIP benefits.
   messages: [
-    "Sorry Sir, voucher is based on your deposit, loss, and gameplay. Right now, your activity is low, so voucher is not possible. You can try free spins in the Free Money section to use free spins or check your deposit offer. If you need any help, just message me anytime.",
-    " Sorry Sir, I checked Gaming ID again. Your activity is less, so you are not eligible for a voucher. Please check the Free Money section to use free spins and your deposit offer. I will assist you anytime you need.",
-    "Sorry Sir, voucher is given only after good activity. Right now, it is not available on your account. You may try Free Money section to use free spins or use your deposit offer. Let me know if you need anything else.",
-    "Sorry Sir, I understand. But your current activity is not enough to get a voucher. You can go to the Free Money section  and try free spins, or check your deposit offer. I am always here to assist you.",
-    "Sorry Sir, total activity like deposit and gameplay is checked for the voucher. Right now, it’s less on your ID. You can still try Free Money section to use free spins  or use the deposit offer given to you. If you ever need help, just message me."
+    "Sorry Sir, I checked your gaming ID again. Your current activity is low, so a voucher is not available right now. You can still use free spins in the Free Money section every 24 hours. \n\nAlso, your previous deposit offer is Active  . If you deposit, you will receive the eligible percentage as a voucher.\nIf you have any other query, I am here to assist you.",
+    "Apologies Sir, based on your recent gameplay and deposit activity, you are not eligible for a voucher at the moment. Free spins in the Free Money section can be used every 24 hours. \n\nYour previous deposit offer remains Active . Depositing now will qualify you for the corresponding voucher percentage.\n Please let me know if you need assistance.",
+    "Sir, after checking your account, your activity is currently insufficient for a voucher. You may still enjoy free spins in the Free Money section every 24 hours. \n\nThe deposit offer given earlier is Active . Making a deposit will make you eligible for the related voucher percentage. \nI am here if you need any help.",
+    "Sorry Sir, your total deposit and gameplay activity is low, so voucher eligibility is not met currently. Free spins in the Free Money section are available every 24 hours. \n\nThe previous deposit offer remains Active . Depositing will grant you the eligible voucher percentage. \nFeel free to message me anytime for support.",
+    "Sir, your activity has been reviewed, and right now it is too low for a voucher. Free spins can still be used in the Free Money section every 24 hours. \n\nYour previous deposit offer is Active . Depositing now will allow you to receive the eligible voucher percentage. \nI am always here to support you."
   ]
-},
+}
+,
+{
+  category: "🎫 Voucher Related",
+  subcategory: "✅ Not Eligible – Deposit Not Completed",
+  // Comment: Use when client claims deposit done but it is not completed. Show empathy first, explain deposit offer and free spins clearly.
+  messages: [
+    "Sir, I am really sorry. I have checked your details, but you have not completed the deposit as per the offer. You will only become eligible for the voucher once the full deposit is done. \n\nFor now, you can try free spins in the Free Money section every 24 hours. Your previous deposit offer is still active.\nIf you have any other query, I am here to assist you.",
+    "Apologies Sir, I checked your account. The deposit you mentioned is not fully completed, so currently you are not eligible for a voucher. \n\nYou can still enjoy free spins in the Free Money section every 24 hours. Your deposit offer remains active and will activate the voucher once completed.\nIf you have any other query, I am here to assist you.",
+    "Sir, I’m really sorry. Upon checking, your deposit is not yet completed as required for the offer. Voucher eligibility will apply only after completing the deposit. \n\nMeanwhile, you can use free spins in the Free Money section every 24 hours. Your deposit offer is still active.\nIf you have any other query, I am here to assist you.",
+    "Sorry Sir, I checked your details. You have not yet completed the deposit needed for the offer, so you are not eligible for a voucher at this moment. \n\nYou can still try free spins in the Free Money section every 24 hours. Your previous deposit offer is active and will become eligible once completed.\nIf you have any other query, I am here to assist you.",
+    "Sir, I am really sorry. I reviewed your account, and the deposit is not fully completed as per the offer. You will become eligible for the voucher only after completing the full deposit. \n\nYou can use free spins from the Free Money section every 24 hours, and your deposit offer is still active.\nIf you have any other query, I am here to assist you."
+  ]
+}
+,
 {
   category: "🎫 Voucher Related",
   subcategory: "✅ Request Template – On Loss",
@@ -797,6 +917,23 @@ Voucher Amount:`
   ]
 },
 
+// 🎮 Game Betting Issue
+{
+  category: "🎮 Game Betting Issue",
+  subcategory: "🔵 Standard Betting Issue Replies",
+  messages: [
+    "Sorry Sir, I understand your concern about the betting issue. Please share your complete details and any screen recording you have, so I can forward it to the relevant department for checking.\n\nIf you need any other assistance, please let me know.",
+
+    "Apologies Sir, I completely understand your concern. Kindly send your game details, ID, and if possible, the screen recording, so that we can verify and forward it to the technical team.\n\nIf you need any other assistance, please let me know.",
+
+    "Sorry for the inconvenience, Sir. Please share your complete betting details or any video proof you have. I will raise your concern with the relevant team for review.\n\nIf you need any other assistance, please let me know.",
+
+    "Apologies Sir, I have  raised your concern regarding the betting issue. The relevant department is checking it, and you will receive the resolution soon. Please wait a little while.\n\nIf you need any other assistance, please let me know.",
+
+    "Sorry Sir, your concern has been forwarded to the team for checking. Once we get an update from the department, I will inform you immediately. Kindly allow some time for the resolution.\n\nIf you need any other assistance, please let me know."
+  ]
+},
+
  // 🎯 Missed Call
   {
     category: "🎯 Missed Call",
@@ -809,6 +946,8 @@ Voucher Amount:`
       "Sorry for the inconvenience, Sir. I’m unable to take calls at the moment, but I’ll make sure someone calls you back soon. Meanwhile, kindly share your concern here so I can assist you directly."
     ]
   },
+
+  
 
   // 🔄 VIP Manager Transfer - Not Your Assigned VIP Manager
   {
@@ -1003,15 +1142,23 @@ Voucher Amount:`
 },
 
   // 😞 Handling Player Dissatisfaction
-  {
-    category: "😞 Player Concerns",
-    subcategory: "🛠️ Empathetic Response",
-    messages: [
-      "I’m really sorry to hear that you’re not satisfied with your recent experience, Sir. We truly aim to provide a world-class gaming environment for all our players.",
-      "Your feedback is extremely important to us, and I’d love to understand more about the issue you’re facing  whether it’s related to gameplay, bonuses, or anything else.",
-      "I’m here to assist you and make sure we improve your experience moving forward. Let’s work through this together!"
-    ]
-  },
+ // 💎 Retention – Client Wants to Leave (Due to Loss)
+{
+  category: "😞 Player Concerns",
+  subcategory: "⚠️ Client Wants to Leave (Loss Reason)",
+  messages: [
+    "Sir, I completely understand your concern. Sometimes the game results may not go as expected, but please remember, our platform gives fair play and the highest RPM rates compared to others.\n\nAs a VIP member, you are always entitled to exclusive offers and special support. I request you to stay connected — better rounds always come ahead.",
+
+    "I truly understand your feelings, Sir. Losing in the game can be disappointing, but every round brings new chances. Our platform maintains the highest RPM and transparent gameplay.\n\nYou are one of our valued VIP members, and we’ll make sure you receive the best offers and personal assistance in upcoming days.",
+
+    "Sir, I can completely relate to your situation. Sometimes the results can be unpredictable, but please note that our platform always provides fair play and strong winning opportunities.\n\nAs a VIP member, you are getting priority assistance and exclusive promotions. I will personally ensure you get the best future offers.",
+
+    "Apologies Sir, I can understand your disappointment. Every player faces ups and downs, but our system always provides fair and real-time chances with the highest RPM rate.\n\nPlease continue with us; your upcoming offers will be very rewarding. I am here to support you anytime.",
+
+    "Sir, I really value your presence as a VIP member. I know losses can feel tough, but please remember — luck always changes.\n\nOur platform gives top-level fair play, 24/7 VIP support, and premium offers. Please stay connected, and I’ll make sure you get exclusive deals soon."
+  ]
+},
+
   {
     category: "😞 Player Concerns",
     subcategory: "🛠️ Resolution-Oriented Response",
@@ -1183,7 +1330,7 @@ Voucher Amount:`
   category: "📋 Rakesh – Shift End Checklist",
   subcategory: "🎁 1. Voucher Summary",
   messages: [
-    "I work as a chat agent in casino VIP support. I will send you my chats in Hindi. You have to convert them into very simple and polite English that I can directly send to the client on WhatsApp. Do not use quotation marks or extra formatting. Keep the sentences short, clear, and easy to understand.",
+    "I work as a chat agent in casino VIP support. I will send you my chats in Hindi. You have to convert them into very simple and polite English that I can directly send to the client on WhatsApp. Do not use quotation marks or any extra formatting. Keep the sentences short, clear, and easy to understand. Always write Sir with capital S. Always end the message with: If you need any other assistance, please let me know.",
     "Total vouchers created & voucher amount: ________",
     "Total vouchers provided: ________"
   ]
